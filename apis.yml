@@ -1,6 +1,12 @@
 aid: stellar-cyber
 name: Stellar Cyber
-description: ' leverage the Stellar Cyber API in more sophisticated ways, a downstream application can perform multiple complex queries, join the results, analyze data, and perform other data operations.Stellar Cyber maintains several sample Python Jupyter Notebooks in GitHub that can help you build analyses outside of Stellar Cyber with the API or connect custom applications. You can use these notebooks for local analysis with the API or as a template for custom applications. '
+description: >-
+  leverage the Stellar Cyber API in more sophisticated ways, a downstream application
+  can perform multiple complex queries, join the results, analyze data, and perform
+  other data operations.Stellar Cyber maintains several sample Python Jupyter Notebooks
+  in GitHub that can help you build analyses outside of Stellar Cyber with the API
+  or connect custom applications. You can use these notebooks for local analysis with
+  the API or as a template for custom applications.
 type: Index
 position: Consumer
 access: 3rd-Party
@@ -15,7 +21,13 @@ specificationVersion: '0.19'
 apis:
   - aid: stellar-cyber:stellar-cyber
     name: Stellar Cyber
-    description: ' leverage the Stellar Cyber API in more sophisticated ways, a downstream application can perform multiple complex queries, join the results, analyze data, and perform other data operations.Stellar Cyber maintains several sample Python Jupyter Notebooks in GitHub that can help you build analyses outside of Stellar Cyber with the API or connect custom applications. You can use these notebooks for local analysis with the API or as a template for custom applications. '
+    description: >-
+      leverage the Stellar Cyber API in more sophisticated ways, a downstream application
+      can perform multiple complex queries, join the results, analyze data, and perform
+      other data operations.Stellar Cyber maintains several sample Python Jupyter
+      Notebooks in GitHub that can help you build analyses outside of Stellar Cyber
+      with the API or connect custom applications. You can use these notebooks for
+      local analysis with the API or as a template for custom applications.
     humanURL: https://docs.stellarcyber.ai/
     tags:
       - Security
