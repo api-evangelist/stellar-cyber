@@ -1,0 +1,33 @@
+{
+  "title": "Create Case",
+  "description": "Example request/response for POST /connect/api/v1/cases",
+  "request": {
+    "method": "POST",
+    "url": "https://your-platform.stellarcyber.ai/connect/api/v1/cases",
+    "headers": {
+      "Authorization": "Bearer {jwt_token}",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "name": "Ransomware Activity Detected",
+      "description": "Possible ransomware execution detected on three workstations in the accounting department",
+      "priority": "critical",
+      "assignee": "incident-responder@example.com"
+    }
+  },
+  "response": {
+    "status": 201,
+    "body": {
+      "id": "case-003",
+      "name": "Ransomware Activity Detected",
+      "description": "Possible ransomware execution detected on three workstations in the accounting department",
+      "status": "open",
+      "priority": "critical",
+      "assignee": "incident-responder@example.com",
+      "tenant_id": "tenant-001",
+      "created_at": "2026-05-02T10:00:00Z",
+      "updated_at": "2026-05-02T10:00:00Z",
+      "alert_count": 0
+    }
+  }
+}

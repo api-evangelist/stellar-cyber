@@ -1,0 +1,59 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "xdr": "https://stellarcyber.ai/vocab/",
+    "schema": "https://schema.org/",
+    "security": "https://w3c.github.io/security-vocab#",
+    "Case": {
+      "@id": "xdr:Case",
+      "@type": "@id"
+    },
+    "Alert": {
+      "@id": "xdr:Alert",
+      "@type": "@id"
+    },
+    "Sensor": {
+      "@id": "xdr:Sensor",
+      "@type": "@id"
+    },
+    "Tenant": {
+      "@id": "xdr:Tenant",
+      "@type": "@id"
+    },
+    "Connector": {
+      "@id": "xdr:Connector",
+      "@type": "@id"
+    },
+    "Watchlist": {
+      "@id": "xdr:Watchlist",
+      "@type": "@id"
+    },
+    "Playbook": {
+      "@id": "xdr:Playbook",
+      "@type": "@id"
+    },
+    "id": "@id",
+    "name": "schema:name",
+    "description": "schema:description",
+    "status": "xdr:status",
+    "priority": "xdr:priority",
+    "severity": "xdr:severity",
+    "assignee": "xdr:assignee",
+    "tenant_id": "xdr:tenantId",
+    "created_at": "schema:dateCreated",
+    "updated_at": "schema:dateModified",
+    "alert_count": "xdr:alertCount",
+    "source": "xdr:source",
+    "tags": "schema:keywords",
+    "entries": "xdr:entries",
+    "trigger": "xdr:trigger",
+    "actions": "xdr:actions",
+    "enabled": "schema:enabled",
+    "ip_address": "schema:ipAddress",
+    "version": "schema:softwareVersion",
+    "last_seen": "xdr:lastSeen",
+    "checkpoint": "xdr:checkpoint",
+    "type": "schema:additionalType",
+    "config": "xdr:config"
+  }
+}

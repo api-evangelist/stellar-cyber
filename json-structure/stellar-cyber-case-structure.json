@@ -1,0 +1,69 @@
+{
+  "title": "Stellar Cyber Case Structure",
+  "description": "JSON structure documentation for Stellar Cyber security cases",
+  "type": "object",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string",
+      "required": true,
+      "description": "Unique case identifier"
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "required": true,
+      "description": "Case display name"
+    },
+    {
+      "name": "description",
+      "type": "string",
+      "required": false,
+      "description": "Detailed case description"
+    },
+    {
+      "name": "status",
+      "type": "enum",
+      "values": ["open", "closed", "investigating"],
+      "required": true,
+      "description": "Case lifecycle status"
+    },
+    {
+      "name": "priority",
+      "type": "enum",
+      "values": ["critical", "high", "medium", "low"],
+      "required": false,
+      "description": "Case priority level"
+    },
+    {
+      "name": "assignee",
+      "type": "string",
+      "required": false,
+      "description": "Assigned analyst username"
+    },
+    {
+      "name": "tenant_id",
+      "type": "string",
+      "required": false,
+      "description": "Multi-tenant identifier"
+    },
+    {
+      "name": "created_at",
+      "type": "datetime",
+      "required": false,
+      "description": "Creation timestamp"
+    },
+    {
+      "name": "updated_at",
+      "type": "datetime",
+      "required": false,
+      "description": "Last modification timestamp"
+    },
+    {
+      "name": "alert_count",
+      "type": "integer",
+      "required": false,
+      "description": "Number of associated alerts"
+    }
+  ]
+}
