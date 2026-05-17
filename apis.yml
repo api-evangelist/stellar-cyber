@@ -68,7 +68,7 @@ common:
     url: https://stellarcyber.ai/pricing/
   - type: Blog
     url: https://stellarcyber.ai/blog/
-  - type: GitHub Organization
+  - type: GitHubOrganization
     url: https://github.com/stellarcyber
 features:
   - name: Open XDR Platform
