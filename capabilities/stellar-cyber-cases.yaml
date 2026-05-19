@@ -1,0 +1,218 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Stellar Cyber Open XDR API — Cases
+  description: 'Stellar Cyber Open XDR API — Cases. 5 operations. Lead operation: List Cases. Self-contained Naftiko capability
+    covering one Stellar Cyber business surface.'
+  tags:
+  - Stellar Cyber
+  - Cases
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    STELLAR_CYBER_API_KEY: STELLAR_CYBER_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: stellar-cyber-cases
+    baseUri: https://{platformHostname}/connect/api/v1
+    description: Stellar Cyber Open XDR API — Cases business capability. Self-contained, no shared references.
+    resources:
+    - name: cases
+      path: /cases
+      operations:
+      - name: listcases
+        method: GET
+        description: List Cases
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: integer
+          description: Maximum number of cases to return
+        - name: offset
+          in: query
+          type: integer
+          description: Number of cases to skip for pagination
+        - name: status
+          in: query
+          type: string
+          description: Filter cases by status
+      - name: createcase
+        method: POST
+        description: Create Case
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: cases-caseId
+      path: /cases/{caseId}
+      operations:
+      - name: getcase
+        method: GET
+        description: Get Case
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatecase
+        method: PUT
+        description: Update Case
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: closecase
+        method: DELETE
+        description: Close Case
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.STELLAR_CYBER_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: stellar-cyber-cases-rest
+    port: 8080
+    description: REST adapter for Stellar Cyber Open XDR API — Cases. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/cases
+      name: cases
+      description: REST surface for cases.
+      operations:
+      - method: GET
+        name: listcases
+        description: List Cases
+        call: stellar-cyber-cases.listcases
+        with:
+          limit: rest.limit
+          offset: rest.offset
+          status: rest.status
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createcase
+        description: Create Case
+        call: stellar-cyber-cases.createcase
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/cases/{caseid}
+      name: cases-caseid
+      description: REST surface for cases-caseId.
+      operations:
+      - method: GET
+        name: getcase
+        description: Get Case
+        call: stellar-cyber-cases.getcase
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatecase
+        description: Update Case
+        call: stellar-cyber-cases.updatecase
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: closecase
+        description: Close Case
+        call: stellar-cyber-cases.closecase
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: stellar-cyber-cases-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Stellar Cyber Open XDR API — Cases. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-cases
+      description: List Cases
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: stellar-cyber-cases.listcases
+      with:
+        limit: tools.limit
+        offset: tools.offset
+        status: tools.status
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-case
+      description: Create Case
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: stellar-cyber-cases.createcase
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-case
+      description: Get Case
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: stellar-cyber-cases.getcase
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-case
+      description: Update Case
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: stellar-cyber-cases.updatecase
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: close-case
+      description: Close Case
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: stellar-cyber-cases.closecase
+      outputParameters:
+      - type: object
+        mapping: $.

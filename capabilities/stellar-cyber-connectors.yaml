@@ -1,0 +1,197 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Stellar Cyber Open XDR API — Connectors
+  description: 'Stellar Cyber Open XDR API — Connectors. 5 operations. Lead operation: List Connectors. Self-contained Naftiko
+    capability covering one Stellar Cyber business surface.'
+  tags:
+  - Stellar Cyber
+  - Connectors
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    STELLAR_CYBER_API_KEY: STELLAR_CYBER_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: stellar-cyber-connectors
+    baseUri: https://{platformHostname}/connect/api/v1
+    description: Stellar Cyber Open XDR API — Connectors business capability. Self-contained, no shared references.
+    resources:
+    - name: connectors
+      path: /connectors
+      operations:
+      - name: listconnectors
+        method: GET
+        description: List Connectors
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createconnector
+        method: POST
+        description: Create Connector
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: connectors-connectorId
+      path: /connectors/{connectorId}
+      operations:
+      - name: getconnector
+        method: GET
+        description: Get Connector
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateconnector
+        method: PUT
+        description: Update Connector
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteconnector
+        method: DELETE
+        description: Delete Connector
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.STELLAR_CYBER_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: stellar-cyber-connectors-rest
+    port: 8080
+    description: REST adapter for Stellar Cyber Open XDR API — Connectors. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/connectors
+      name: connectors
+      description: REST surface for connectors.
+      operations:
+      - method: GET
+        name: listconnectors
+        description: List Connectors
+        call: stellar-cyber-connectors.listconnectors
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createconnector
+        description: Create Connector
+        call: stellar-cyber-connectors.createconnector
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/connectors/{connectorid}
+      name: connectors-connectorid
+      description: REST surface for connectors-connectorId.
+      operations:
+      - method: GET
+        name: getconnector
+        description: Get Connector
+        call: stellar-cyber-connectors.getconnector
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateconnector
+        description: Update Connector
+        call: stellar-cyber-connectors.updateconnector
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteconnector
+        description: Delete Connector
+        call: stellar-cyber-connectors.deleteconnector
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: stellar-cyber-connectors-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Stellar Cyber Open XDR API — Connectors. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-connectors
+      description: List Connectors
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: stellar-cyber-connectors.listconnectors
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-connector
+      description: Create Connector
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: stellar-cyber-connectors.createconnector
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-connector
+      description: Get Connector
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: stellar-cyber-connectors.getconnector
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-connector
+      description: Update Connector
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: stellar-cyber-connectors.updateconnector
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-connector
+      description: Delete Connector
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: stellar-cyber-connectors.deleteconnector
+      outputParameters:
+      - type: object
+        mapping: $.

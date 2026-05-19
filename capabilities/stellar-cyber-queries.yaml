@@ -1,0 +1,172 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Stellar Cyber Open XDR API — Queries
+  description: 'Stellar Cyber Open XDR API — Queries. 4 operations. Lead operation: List Queries. Self-contained Naftiko capability
+    covering one Stellar Cyber business surface.'
+  tags:
+  - Stellar Cyber
+  - Queries
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    STELLAR_CYBER_API_KEY: STELLAR_CYBER_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: stellar-cyber-queries
+    baseUri: https://{platformHostname}/connect/api/v1
+    description: Stellar Cyber Open XDR API — Queries business capability. Self-contained, no shared references.
+    resources:
+    - name: queries
+      path: /queries
+      operations:
+      - name: listqueries
+        method: GET
+        description: List Queries
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createquery
+        method: POST
+        description: Create Query
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: queries-queryId
+      path: /queries/{queryId}
+      operations:
+      - name: updatequery
+        method: PUT
+        description: Update Query
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletequery
+        method: DELETE
+        description: Delete Query
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.STELLAR_CYBER_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: stellar-cyber-queries-rest
+    port: 8080
+    description: REST adapter for Stellar Cyber Open XDR API — Queries. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/queries
+      name: queries
+      description: REST surface for queries.
+      operations:
+      - method: GET
+        name: listqueries
+        description: List Queries
+        call: stellar-cyber-queries.listqueries
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createquery
+        description: Create Query
+        call: stellar-cyber-queries.createquery
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/queries/{queryid}
+      name: queries-queryid
+      description: REST surface for queries-queryId.
+      operations:
+      - method: PUT
+        name: updatequery
+        description: Update Query
+        call: stellar-cyber-queries.updatequery
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletequery
+        description: Delete Query
+        call: stellar-cyber-queries.deletequery
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: stellar-cyber-queries-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Stellar Cyber Open XDR API — Queries. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-queries
+      description: List Queries
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: stellar-cyber-queries.listqueries
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-query
+      description: Create Query
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: stellar-cyber-queries.createquery
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-query
+      description: Update Query
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: stellar-cyber-queries.updatequery
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-query
+      description: Delete Query
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: stellar-cyber-queries.deletequery
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,137 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Stellar Cyber Open XDR API — Watchlists
+  description: 'Stellar Cyber Open XDR API — Watchlists. 3 operations. Lead operation: List Watchlists. Self-contained Naftiko
+    capability covering one Stellar Cyber business surface.'
+  tags:
+  - Stellar Cyber
+  - Watchlists
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    STELLAR_CYBER_API_KEY: STELLAR_CYBER_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: stellar-cyber-watchlists
+    baseUri: https://{platformHostname}/connect/api/v1
+    description: Stellar Cyber Open XDR API — Watchlists business capability. Self-contained, no shared references.
+    resources:
+    - name: watchlists
+      path: /watchlists
+      operations:
+      - name: listwatchlists
+        method: GET
+        description: List Watchlists
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createwatchlist
+        method: POST
+        description: Create Watchlist
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: watchlists-watchlistId
+      path: /watchlists/{watchlistId}
+      operations:
+      - name: deletewatchlist
+        method: DELETE
+        description: Delete Watchlist
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.STELLAR_CYBER_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: stellar-cyber-watchlists-rest
+    port: 8080
+    description: REST adapter for Stellar Cyber Open XDR API — Watchlists. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/watchlists
+      name: watchlists
+      description: REST surface for watchlists.
+      operations:
+      - method: GET
+        name: listwatchlists
+        description: List Watchlists
+        call: stellar-cyber-watchlists.listwatchlists
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createwatchlist
+        description: Create Watchlist
+        call: stellar-cyber-watchlists.createwatchlist
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/watchlists/{watchlistid}
+      name: watchlists-watchlistid
+      description: REST surface for watchlists-watchlistId.
+      operations:
+      - method: DELETE
+        name: deletewatchlist
+        description: Delete Watchlist
+        call: stellar-cyber-watchlists.deletewatchlist
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: stellar-cyber-watchlists-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Stellar Cyber Open XDR API — Watchlists. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-watchlists
+      description: List Watchlists
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: stellar-cyber-watchlists.listwatchlists
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-watchlist
+      description: Create Watchlist
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: stellar-cyber-watchlists.createwatchlist
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-watchlist
+      description: Delete Watchlist
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: stellar-cyber-watchlists.deletewatchlist
+      outputParameters:
+      - type: object
+        mapping: $.
