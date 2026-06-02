@@ -2,12 +2,20 @@
   "repo": "stellar-cyber",
   "feeds": [
     {
-      "source": "https://stellarcyber.ai/blog/",
+      "source": "https://stellarcyber.ai/feed/",
       "feed_url": "https://stellarcyber.ai/feed/",
-      "title": "Stellar Cyber",
-      "saved": 6
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    },
+    {
+      "source": "https://stellarcyber.ai/pricing/",
+      "feed_url": "https://stellarcyber.ai/feed/",
+      "title": "",
+      "saved": 0,
+      "method": "discovered"
     }
   ],
-  "post_count": 16,
-  "fetched": "2026-05-17T20:20:35Z"
+  "post_count": 18,
+  "fetched": "2026-06-01T23:35:02Z"
 }
