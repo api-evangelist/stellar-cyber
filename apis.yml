@@ -51,6 +51,12 @@ apis:
       - FN: Stellar Cyber Support
         url: https://stellarcyber.zendesk.com
 common:
+  - type: TrustCenter
+    url: security/stellar-cyber-trust-center.yml
+  - type: DomainSecurity
+    url: security/stellar-cyber-domain-security.yml
+  - type: Authentication
+    url: authentication/stellar-cyber-authentication.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/stellar-cyber
   - type: Portal

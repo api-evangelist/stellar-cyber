@@ -1,0 +1,15 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/stellar-cyber-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  description: JWT token obtained from /access_token endpoint. Tokens expire after 10 minutes.
+    API keys can also be used as Bearer tokens for the /access_token call.
+  sources:
+  - openapi/stellar-cyber-openapi.yml
