@@ -1,0 +1,99 @@
+openapi: 3.0.3
+info:
+  title: Stellar Cyber Open XDR Alerts Events API
+  description: The Stellar Cyber REST API provides programmatic access to the Open XDR platform, enabling automation of security operations including case management, tenant administration, connector management, alert handling, query operations, user management, watchlists, sensors, and security event management.
+  version: '6.3'
+  contact:
+    name: Stellar Cyber Support
+    url: https://stellarcyber.zendesk.com
+  license:
+    name: Proprietary
+    url: https://stellarcyber.ai/terms/
+servers:
+- url: https://{platformHostname}/connect/api/v1
+  description: Stellar Cyber Platform API
+  variables:
+    platformHostname:
+      description: Your Stellar Cyber platform hostname
+      default: your-platform.stellarcyber.ai
+security:
+- bearerAuth: []
+tags:
+- name: Events
+  description: Security event management and bulk ingestion
+paths:
+  /events:
+    post:
+      operationId: ingestEvents
+      summary: Ingest Events
+      description: Add security event documents to the platform's security event index. Supports both single and bulk event ingestion.
+      tags:
+      - Events
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IngestEventsRequest'
+      responses:
+        '200':
+          description: Events ingested successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IngestEventsResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  responses:
+    Unauthorized:
+      description: Authentication required or token expired
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    IngestEventsResponse:
+      type: object
+      properties:
+        ingested:
+          type: integer
+        failed:
+          type: integer
+        errors:
+          type: array
+          items:
+            type: string
+    IngestEventsRequest:
+      type: object
+      required:
+      - events
+      properties:
+        events:
+          type: array
+          items:
+            type: object
+            description: Security event document in Stellar Cyber format
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        code:
+          type: integer
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token obtained from /access_token endpoint. Tokens expire after 10 minutes. API keys can also be used as Bearer tokens for the /access_token call.

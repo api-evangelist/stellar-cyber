@@ -1,0 +1,170 @@
+openapi: 3.0.3
+info:
+  title: Stellar Cyber Open XDR Alerts API
+  description: The Stellar Cyber REST API provides programmatic access to the Open XDR platform, enabling automation of security operations including case management, tenant administration, connector management, alert handling, query operations, user management, watchlists, sensors, and security event management.
+  version: '6.3'
+  contact:
+    name: Stellar Cyber Support
+    url: https://stellarcyber.zendesk.com
+  license:
+    name: Proprietary
+    url: https://stellarcyber.ai/terms/
+servers:
+- url: https://{platformHostname}/connect/api/v1
+  description: Stellar Cyber Platform API
+  variables:
+    platformHostname:
+      description: Your Stellar Cyber platform hostname
+      default: your-platform.stellarcyber.ai
+security:
+- bearerAuth: []
+tags:
+- name: Alerts
+  description: Alert management, tagging, and status updates
+paths:
+  /alerts:
+    get:
+      operationId: listAlerts
+      summary: List Alerts
+      description: Retrieve security alerts from the platform.
+      tags:
+      - Alerts
+      parameters:
+      - name: limit
+        in: query
+        description: Maximum number of alerts to return
+        schema:
+          type: integer
+          default: 50
+      - name: offset
+        in: query
+        description: Pagination offset
+        schema:
+          type: integer
+          default: 0
+      - name: status
+        in: query
+        description: Filter by alert status
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of alerts
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlertsListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /alerts/{alertId}:
+    put:
+      operationId: updateAlert
+      summary: Update Alert
+      description: Update alert tags, status, and comments.
+      tags:
+      - Alerts
+      parameters:
+      - $ref: '#/components/parameters/AlertId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateAlertRequest'
+      responses:
+        '200':
+          description: Alert updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Alert'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    UpdateAlertRequest:
+      type: object
+      properties:
+        status:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+        comment:
+          type: string
+    Alert:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        severity:
+          type: string
+          enum:
+          - critical
+          - high
+          - medium
+          - low
+          - informational
+        status:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+        tenant_id:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        source:
+          type: string
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        code:
+          type: integer
+    AlertsListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Alert'
+        total:
+          type: integer
+  responses:
+    Unauthorized:
+      description: Authentication required or token expired
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    AlertId:
+      name: alertId
+      in: path
+      required: true
+      description: Unique identifier for the alert
+      schema:
+        type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token obtained from /access_token endpoint. Tokens expire after 10 minutes. API keys can also be used as Bearer tokens for the /access_token call.

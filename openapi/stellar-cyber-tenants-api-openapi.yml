@@ -1,0 +1,194 @@
+openapi: 3.0.3
+info:
+  title: Stellar Cyber Open XDR Alerts Tenants API
+  description: The Stellar Cyber REST API provides programmatic access to the Open XDR platform, enabling automation of security operations including case management, tenant administration, connector management, alert handling, query operations, user management, watchlists, sensors, and security event management.
+  version: '6.3'
+  contact:
+    name: Stellar Cyber Support
+    url: https://stellarcyber.zendesk.com
+  license:
+    name: Proprietary
+    url: https://stellarcyber.ai/terms/
+servers:
+- url: https://{platformHostname}/connect/api/v1
+  description: Stellar Cyber Platform API
+  variables:
+    platformHostname:
+      description: Your Stellar Cyber platform hostname
+      default: your-platform.stellarcyber.ai
+security:
+- bearerAuth: []
+tags:
+- name: Tenants
+  description: Multi-tenant administration and grouping
+paths:
+  /tenants:
+    get:
+      operationId: listTenants
+      summary: List Tenants
+      description: Retrieve all tenants available to the authenticated user.
+      tags:
+      - Tenants
+      responses:
+        '200':
+          description: List of tenants
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantsListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createTenant
+      summary: Create Tenant
+      description: Create a new tenant on the platform (Super Admin only).
+      tags:
+      - Tenants
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTenantRequest'
+      responses:
+        '201':
+          description: Tenant created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tenant'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /tenants/{tenantId}:
+    get:
+      operationId: getTenant
+      summary: Get Tenant
+      description: Retrieve details of a specific tenant.
+      tags:
+      - Tenants
+      parameters:
+      - $ref: '#/components/parameters/TenantId'
+      responses:
+        '200':
+          description: Tenant details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tenant'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateTenant
+      summary: Update Tenant
+      description: Update tenant configuration.
+      tags:
+      - Tenants
+      parameters:
+      - $ref: '#/components/parameters/TenantId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTenantRequest'
+      responses:
+        '200':
+          description: Tenant updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tenant'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    delete:
+      operationId: deleteTenant
+      summary: Delete Tenant
+      description: Delete a tenant from the platform (Super Admin only).
+      tags:
+      - Tenants
+      parameters:
+      - $ref: '#/components/parameters/TenantId'
+      responses:
+        '204':
+          description: Tenant deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    UpdateTenantRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+    Tenant:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+    CreateTenantRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        code:
+          type: integer
+    TenantsListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tenant'
+        total:
+          type: integer
+  responses:
+    Unauthorized:
+      description: Authentication required or token expired
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    TenantId:
+      name: tenantId
+      in: path
+      required: true
+      description: Unique identifier for the tenant
+      schema:
+        type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token obtained from /access_token endpoint. Tokens expire after 10 minutes. API keys can also be used as Bearer tokens for the /access_token call.

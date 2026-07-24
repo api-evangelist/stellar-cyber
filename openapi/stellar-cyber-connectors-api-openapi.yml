@@ -1,0 +1,217 @@
+openapi: 3.0.3
+info:
+  title: Stellar Cyber Open XDR Alerts Connectors API
+  description: The Stellar Cyber REST API provides programmatic access to the Open XDR platform, enabling automation of security operations including case management, tenant administration, connector management, alert handling, query operations, user management, watchlists, sensors, and security event management.
+  version: '6.3'
+  contact:
+    name: Stellar Cyber Support
+    url: https://stellarcyber.zendesk.com
+  license:
+    name: Proprietary
+    url: https://stellarcyber.ai/terms/
+servers:
+- url: https://{platformHostname}/connect/api/v1
+  description: Stellar Cyber Platform API
+  variables:
+    platformHostname:
+      description: Your Stellar Cyber platform hostname
+      default: your-platform.stellarcyber.ai
+security:
+- bearerAuth: []
+tags:
+- name: Connectors
+  description: Data connector management for security telemetry ingestion
+paths:
+  /connectors:
+    get:
+      operationId: listConnectors
+      summary: List Connectors
+      description: Retrieve all configured data connectors.
+      tags:
+      - Connectors
+      responses:
+        '200':
+          description: List of connectors
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorsListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createConnector
+      summary: Create Connector
+      description: Create a new data connector for ingesting security telemetry.
+      tags:
+      - Connectors
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateConnectorRequest'
+      responses:
+        '201':
+          description: Connector created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Connector'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /connectors/{connectorId}:
+    get:
+      operationId: getConnector
+      summary: Get Connector
+      description: Retrieve details of a specific connector.
+      tags:
+      - Connectors
+      parameters:
+      - $ref: '#/components/parameters/ConnectorId'
+      responses:
+        '200':
+          description: Connector details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Connector'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateConnector
+      summary: Update Connector
+      description: Update connector configuration or checkpoint timestamp.
+      tags:
+      - Connectors
+      parameters:
+      - $ref: '#/components/parameters/ConnectorId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateConnectorRequest'
+      responses:
+        '200':
+          description: Connector updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Connector'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    delete:
+      operationId: deleteConnector
+      summary: Delete Connector
+      description: Delete a data connector.
+      tags:
+      - Connectors
+      parameters:
+      - $ref: '#/components/parameters/ConnectorId'
+      responses:
+        '204':
+          description: Connector deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  responses:
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required or token expired
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    CreateConnectorRequest:
+      type: object
+      required:
+      - name
+      - type
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+        config:
+          type: object
+    Connector:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+        status:
+          type: string
+          enum:
+          - active
+          - inactive
+          - error
+        checkpoint:
+          type: string
+          format: date-time
+        created_at:
+          type: string
+          format: date-time
+    ConnectorsListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Connector'
+        total:
+          type: integer
+    UpdateConnectorRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        config:
+          type: object
+        checkpoint:
+          type: string
+          format: date-time
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        code:
+          type: integer
+  parameters:
+    ConnectorId:
+      name: connectorId
+      in: path
+      required: true
+      description: Unique identifier for the connector
+      schema:
+        type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token obtained from /access_token endpoint. Tokens expire after 10 minutes. API keys can also be used as Bearer tokens for the /access_token call.

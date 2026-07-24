@@ -1,0 +1,133 @@
+openapi: 3.0.3
+info:
+  title: Stellar Cyber Open XDR Alerts Playbooks API
+  description: The Stellar Cyber REST API provides programmatic access to the Open XDR platform, enabling automation of security operations including case management, tenant administration, connector management, alert handling, query operations, user management, watchlists, sensors, and security event management.
+  version: '6.3'
+  contact:
+    name: Stellar Cyber Support
+    url: https://stellarcyber.zendesk.com
+  license:
+    name: Proprietary
+    url: https://stellarcyber.ai/terms/
+servers:
+- url: https://{platformHostname}/connect/api/v1
+  description: Stellar Cyber Platform API
+  variables:
+    platformHostname:
+      description: Your Stellar Cyber platform hostname
+      default: your-platform.stellarcyber.ai
+security:
+- bearerAuth: []
+tags:
+- name: Playbooks
+  description: ATH Playbook response action management
+paths:
+  /playbooks:
+    get:
+      operationId: listPlaybooks
+      summary: List Playbooks
+      description: Retrieve all ATH Playbook response action definitions.
+      tags:
+      - Playbooks
+      responses:
+        '200':
+          description: List of playbooks
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlaybooksListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createPlaybook
+      summary: Create Playbook
+      description: Create a new ATH Playbook response action.
+      tags:
+      - Playbooks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePlaybookRequest'
+      responses:
+        '201':
+          description: Playbook created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Playbook'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    CreatePlaybookRequest:
+      type: object
+      required:
+      - name
+      - trigger
+      - actions
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        trigger:
+          type: string
+        actions:
+          type: array
+          items:
+            type: object
+        enabled:
+          type: boolean
+    Playbook:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        trigger:
+          type: string
+        actions:
+          type: array
+          items:
+            type: object
+        enabled:
+          type: boolean
+        created_at:
+          type: string
+          format: date-time
+    PlaybooksListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Playbook'
+        total:
+          type: integer
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        code:
+          type: integer
+  responses:
+    Unauthorized:
+      description: Authentication required or token expired
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token obtained from /access_token endpoint. Tokens expire after 10 minutes. API keys can also be used as Bearer tokens for the /access_token call.

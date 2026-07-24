@@ -1,0 +1,276 @@
+openapi: 3.0.3
+info:
+  title: Stellar Cyber Open XDR Alerts Cases API
+  description: The Stellar Cyber REST API provides programmatic access to the Open XDR platform, enabling automation of security operations including case management, tenant administration, connector management, alert handling, query operations, user management, watchlists, sensors, and security event management.
+  version: '6.3'
+  contact:
+    name: Stellar Cyber Support
+    url: https://stellarcyber.zendesk.com
+  license:
+    name: Proprietary
+    url: https://stellarcyber.ai/terms/
+servers:
+- url: https://{platformHostname}/connect/api/v1
+  description: Stellar Cyber Platform API
+  variables:
+    platformHostname:
+      description: Your Stellar Cyber platform hostname
+      default: your-platform.stellarcyber.ai
+security:
+- bearerAuth: []
+tags:
+- name: Cases
+  description: Security case creation, retrieval, update, and closure
+paths:
+  /cases:
+    get:
+      operationId: listCases
+      summary: List Cases
+      description: Retrieve a list of security cases from the platform.
+      tags:
+      - Cases
+      parameters:
+      - name: limit
+        in: query
+        description: Maximum number of cases to return
+        schema:
+          type: integer
+          default: 50
+      - name: offset
+        in: query
+        description: Number of cases to skip for pagination
+        schema:
+          type: integer
+          default: 0
+      - name: status
+        in: query
+        description: Filter cases by status
+        schema:
+          type: string
+          enum:
+          - open
+          - closed
+          - investigating
+      responses:
+        '200':
+          description: List of cases retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CasesListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createCase
+      summary: Create Case
+      description: Create a new security case in the platform.
+      tags:
+      - Cases
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCaseRequest'
+      responses:
+        '201':
+          description: Case created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Case'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /cases/{caseId}:
+    get:
+      operationId: getCase
+      summary: Get Case
+      description: Retrieve details of a specific security case.
+      tags:
+      - Cases
+      parameters:
+      - $ref: '#/components/parameters/CaseId'
+      responses:
+        '200':
+          description: Case details retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Case'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateCase
+      summary: Update Case
+      description: Update the status, priority, or other attributes of a security case.
+      tags:
+      - Cases
+      parameters:
+      - $ref: '#/components/parameters/CaseId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCaseRequest'
+      responses:
+        '200':
+          description: Case updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Case'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: closeCase
+      summary: Close Case
+      description: Close a security case in the platform.
+      tags:
+      - Cases
+      parameters:
+      - $ref: '#/components/parameters/CaseId'
+      responses:
+        '204':
+          description: Case closed successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    Case:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+          enum:
+          - open
+          - closed
+          - investigating
+        priority:
+          type: string
+          enum:
+          - critical
+          - high
+          - medium
+          - low
+        assignee:
+          type: string
+        tenant_id:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        alert_count:
+          type: integer
+    CreateCaseRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        priority:
+          type: string
+          enum:
+          - critical
+          - high
+          - medium
+          - low
+        assignee:
+          type: string
+    CasesListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Case'
+        total:
+          type: integer
+        limit:
+          type: integer
+        offset:
+          type: integer
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        code:
+          type: integer
+    UpdateCaseRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+          enum:
+          - open
+          - closed
+          - investigating
+        priority:
+          type: string
+          enum:
+          - critical
+          - high
+          - medium
+          - low
+        assignee:
+          type: string
+  parameters:
+    CaseId:
+      name: caseId
+      in: path
+      required: true
+      description: Unique identifier for the case
+      schema:
+        type: string
+  responses:
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required or token expired
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token obtained from /access_token endpoint. Tokens expire after 10 minutes. API keys can also be used as Bearer tokens for the /access_token call.
