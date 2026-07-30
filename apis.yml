@@ -7,9 +7,22 @@ description: >-
   Stellar Cyber maintains several sample Python Jupyter Notebooks in GitHub that can help build analyses outside of the
   platform with the API or connect custom applications.
 type: Index
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 position: Consumer
 access: 3rd-Party
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/stellar-cyber.png
 tags:
   - Cybersecurity
   - Security
@@ -22,35 +35,163 @@ modified: '2026-05-19'
 url: https://raw.githubusercontent.com/api-evangelist/stellar-cyber/refs/heads/main/apis.yml
 specificationVersion: '0.19'
 apis:
-  - aid: stellar-cyber:stellar-cyber
-    name: Stellar Cyber Open XDR API
-    description: >-
-      The Stellar Cyber REST API provides programmatic access to the Open XDR platform, enabling automation of security
-      operations including case management, tenant administration, connector management, alert handling, query
-      operations, user management, watchlists, sensors, and security event management. The API uses JWT-based
-      authentication and is available at the base path /connect/api/v1/ on the platform hostname.
-    humanURL: https://docs.stellarcyber.ai/
-    baseURL: https://{platform-hostname}/connect/api/v1
-    tags:
-      - Cybersecurity
-      - Security
-      - XDR
-      - SIEM
-      - SOAR
-      - Threat Detection
-      - Incident Response
-    properties:
-      - type: Documentation
-        url: https://docs.stellarcyber.ai/
-      - type: Reference
-        url: https://docs.stellarcyber.ai/6.3.x/Using/API/API-Intro.htm
-      - type: OpenAPI
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/stellar-cyber/refs/heads/main/openapi/stellar-cyber-openapi.yml
-    contact:
-      - FN: Stellar Cyber Support
-        url: https://stellarcyber.zendesk.com
+- aid: stellar-cyber:stellar-cyber-alerts-api
+  name: Stellar Cyber Alerts API
+  description: Alert management, tagging, and status updates
+  humanURL: https://docs.stellarcyber.ai/
+  baseURL: https://{platform-hostname}/connect/api/v1
+  tags:
+  - Alerts
+  properties:
+  - type: OpenAPI
+    url: openapi/stellar-cyber-alerts-api-openapi.yml
+  - type: Documentation
+    url: https://docs.stellarcyber.ai/
+  - type: Reference
+    url: https://docs.stellarcyber.ai/6.3.x/Using/API/API-Intro.htm
+- aid: stellar-cyber:stellar-cyber-authentication-api
+  name: Stellar Cyber Authentication API
+  description: API key and JWT token management
+  humanURL: https://docs.stellarcyber.ai/
+  baseURL: https://{platform-hostname}/connect/api/v1
+  tags:
+  - Authentication
+  properties:
+  - type: OpenAPI
+    url: openapi/stellar-cyber-authentication-api-openapi.yml
+  - type: Documentation
+    url: https://docs.stellarcyber.ai/
+  - type: Reference
+    url: https://docs.stellarcyber.ai/6.3.x/Using/API/API-Intro.htm
+- aid: stellar-cyber:stellar-cyber-cases-api
+  name: Stellar Cyber Cases API
+  description: Security case creation, retrieval, update, and closure
+  humanURL: https://docs.stellarcyber.ai/
+  baseURL: https://{platform-hostname}/connect/api/v1
+  tags:
+  - Cases
+  properties:
+  - type: OpenAPI
+    url: openapi/stellar-cyber-cases-api-openapi.yml
+  - type: Documentation
+    url: https://docs.stellarcyber.ai/
+  - type: Reference
+    url: https://docs.stellarcyber.ai/6.3.x/Using/API/API-Intro.htm
+- aid: stellar-cyber:stellar-cyber-connectors-api
+  name: Stellar Cyber Connectors API
+  description: Data connector management for security telemetry ingestion
+  humanURL: https://docs.stellarcyber.ai/
+  baseURL: https://{platform-hostname}/connect/api/v1
+  tags:
+  - Connectors
+  properties:
+  - type: OpenAPI
+    url: openapi/stellar-cyber-connectors-api-openapi.yml
+  - type: Documentation
+    url: https://docs.stellarcyber.ai/
+  - type: Reference
+    url: https://docs.stellarcyber.ai/6.3.x/Using/API/API-Intro.htm
+- aid: stellar-cyber:stellar-cyber-events-api
+  name: Stellar Cyber Events API
+  description: Security event management and bulk ingestion
+  humanURL: https://docs.stellarcyber.ai/
+  baseURL: https://{platform-hostname}/connect/api/v1
+  tags:
+  - Events
+  properties:
+  - type: OpenAPI
+    url: openapi/stellar-cyber-events-api-openapi.yml
+  - type: Documentation
+    url: https://docs.stellarcyber.ai/
+  - type: Reference
+    url: https://docs.stellarcyber.ai/6.3.x/Using/API/API-Intro.htm
+- aid: stellar-cyber:stellar-cyber-playbooks-api
+  name: Stellar Cyber Playbooks API
+  description: ATH Playbook response action management
+  humanURL: https://docs.stellarcyber.ai/
+  baseURL: https://{platform-hostname}/connect/api/v1
+  tags:
+  - Playbooks
+  properties:
+  - type: OpenAPI
+    url: openapi/stellar-cyber-playbooks-api-openapi.yml
+  - type: Documentation
+    url: https://docs.stellarcyber.ai/
+  - type: Reference
+    url: https://docs.stellarcyber.ai/6.3.x/Using/API/API-Intro.htm
+- aid: stellar-cyber:stellar-cyber-queries-api
+  name: Stellar Cyber Queries API
+  description: Saved query management
+  humanURL: https://docs.stellarcyber.ai/
+  baseURL: https://{platform-hostname}/connect/api/v1
+  tags:
+  - Queries
+  properties:
+  - type: OpenAPI
+    url: openapi/stellar-cyber-queries-api-openapi.yml
+  - type: Documentation
+    url: https://docs.stellarcyber.ai/
+  - type: Reference
+    url: https://docs.stellarcyber.ai/6.3.x/Using/API/API-Intro.htm
+- aid: stellar-cyber:stellar-cyber-reports-api
+  name: Stellar Cyber Reports API
+  description: Security report generation and retrieval
+  humanURL: https://docs.stellarcyber.ai/
+  baseURL: https://{platform-hostname}/connect/api/v1
+  tags:
+  - Reports
+  properties:
+  - type: OpenAPI
+    url: openapi/stellar-cyber-reports-api-openapi.yml
+  - type: Documentation
+    url: https://docs.stellarcyber.ai/
+  - type: Reference
+    url: https://docs.stellarcyber.ai/6.3.x/Using/API/API-Intro.htm
+- aid: stellar-cyber:stellar-cyber-sensors-api
+  name: Stellar Cyber Sensors API
+  description: Sensor monitoring and management
+  humanURL: https://docs.stellarcyber.ai/
+  baseURL: https://{platform-hostname}/connect/api/v1
+  tags:
+  - Sensors
+  properties:
+  - type: OpenAPI
+    url: openapi/stellar-cyber-sensors-api-openapi.yml
+  - type: Documentation
+    url: https://docs.stellarcyber.ai/
+  - type: Reference
+    url: https://docs.stellarcyber.ai/6.3.x/Using/API/API-Intro.htm
+- aid: stellar-cyber:stellar-cyber-tenants-api
+  name: Stellar Cyber Tenants API
+  description: Multi-tenant administration and grouping
+  humanURL: https://docs.stellarcyber.ai/
+  baseURL: https://{platform-hostname}/connect/api/v1
+  tags:
+  - Tenants
+  properties:
+  - type: OpenAPI
+    url: openapi/stellar-cyber-tenants-api-openapi.yml
+  - type: Documentation
+    url: https://docs.stellarcyber.ai/
+  - type: Reference
+    url: https://docs.stellarcyber.ai/6.3.x/Using/API/API-Intro.htm
+- aid: stellar-cyber:stellar-cyber-watchlists-api
+  name: Stellar Cyber Watchlists API
+  description: Watchlist creation and management
+  humanURL: https://docs.stellarcyber.ai/
+  baseURL: https://{platform-hostname}/connect/api/v1
+  tags:
+  - Watchlists
+  properties:
+  - type: OpenAPI
+    url: openapi/stellar-cyber-watchlists-api-openapi.yml
+  - type: Documentation
+    url: https://docs.stellarcyber.ai/
+  - type: Reference
+    url: https://docs.stellarcyber.ai/6.3.x/Using/API/API-Intro.htm
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/stellar-cyber/overview
   - type: AgenticAccess
     url: agentic-access/stellar-cyber-agentic-access.yml
   - type: TrustCenter
