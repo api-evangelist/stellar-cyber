@@ -1,0 +1,34 @@
+{
+  "provider": "stellar-cyber",
+  "sources": [
+    "stellar-cyber-alerts-api-openapi.yml",
+    "stellar-cyber-authentication-api-openapi.yml",
+    "stellar-cyber-cases-api-openapi.yml",
+    "stellar-cyber-connectors-api-openapi.yml",
+    "stellar-cyber-events-api-openapi.yml",
+    "stellar-cyber-playbooks-api-openapi.yml",
+    "stellar-cyber-queries-api-openapi.yml",
+    "stellar-cyber-reports-api-openapi.yml",
+    "stellar-cyber-sensors-api-openapi.yml",
+    "stellar-cyber-tenants-api-openapi.yml",
+    "stellar-cyber-watchlists-api-openapi.yml"
+  ],
+  "outputs": [
+    "stellar-cyber-alerts-api-openapi.yml",
+    "stellar-cyber-authentication-api-openapi.yml",
+    "stellar-cyber-cases-api-openapi.yml",
+    "stellar-cyber-connectors-api-openapi.yml",
+    "stellar-cyber-events-api-openapi.yml",
+    "stellar-cyber-playbooks-api-openapi.yml",
+    "stellar-cyber-queries-api-openapi.yml",
+    "stellar-cyber-reports-api-openapi.yml",
+    "stellar-cyber-sensors-api-openapi.yml",
+    "stellar-cyber-tenants-api-openapi.yml",
+    "stellar-cyber-watchlists-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

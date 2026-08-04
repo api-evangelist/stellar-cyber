@@ -1,0 +1,1030 @@
+{
+  "info": {
+    "_postman_id": "a236b7a8-fbfe-465d-94ef-3e63a10ff52c",
+    "name": "Stellar Cyber Open XDR Alerts Cases API",
+    "description": "The Stellar Cyber REST API provides programmatic access to the Open XDR platform, enabling automation of security operations including case management, tenant administration, connector management, alert handling, query operations, user management, watchlists, sensors, and security event management.\n\nContact Support:\n Name: Stellar Cyber Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:05:30.000Z",
+    "updatedAt": "2026-07-28T03:05:31.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a236b7a8-fbfe-465d-94ef-3e63a10ff52c"
+  },
+  "item": [
+    {
+      "name": "cases",
+      "item": [
+        {
+          "name": "{caseId}",
+          "item": [
+            {
+              "name": "Get Case",
+              "id": "b779ab18-591a-49fa-a847-a437697482fc",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/cases/:caseId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "cases",
+                    ":caseId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "deef6c87-f645-498e-a5b0-8ef0e2f74805",
+                      "key": "caseId",
+                      "value": "<string>",
+                      "description": "(Required) Unique identifier for the case"
+                    }
+                  ]
+                },
+                "description": "Retrieve details of a specific security case."
+              },
+              "response": [
+                {
+                  "id": "dc99902a-7114-41c1-bfa5-bf7fbe32c413",
+                  "name": "Case details retrieved successfully",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/cases/:caseId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "cases",
+                        ":caseId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "caseId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"closed\",\n  \"priority\": \"low\",\n  \"assignee\": \"<string>\",\n  \"tenant_id\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"alert_count\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T03:05:31.000Z",
+                  "updatedAt": "2026-07-28T03:05:31.000Z",
+                  "uid": "35240-dc99902a-7114-41c1-bfa5-bf7fbe32c413"
+                },
+                {
+                  "id": "2eb49bd8-5171-4036-8338-a3fa94d30793",
+                  "name": "Authentication required or token expired",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/cases/:caseId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "cases",
+                        ":caseId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "caseId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T03:05:31.000Z",
+                  "updatedAt": "2026-07-28T03:05:31.000Z",
+                  "uid": "35240-2eb49bd8-5171-4036-8338-a3fa94d30793"
+                },
+                {
+                  "id": "218e9136-2d33-4b13-8b43-bb4ada018b6e",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/cases/:caseId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "cases",
+                        ":caseId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "caseId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T03:05:31.000Z",
+                  "updatedAt": "2026-07-28T03:05:31.000Z",
+                  "uid": "35240-218e9136-2d33-4b13-8b43-bb4ada018b6e"
+                }
+              ],
+              "createdAt": "2026-07-28T03:05:31.000Z",
+              "updatedAt": "2026-07-28T03:05:31.000Z",
+              "uid": "35240-b779ab18-591a-49fa-a847-a437697482fc"
+            },
+            {
+              "name": "Update Case",
+              "id": "2a77cfe3-2a0d-4fb0-93c8-d1d5574d063a",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"investigating\",\n  \"priority\": \"low\",\n  \"assignee\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/cases/:caseId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "cases",
+                    ":caseId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "97301651-bbac-4070-9343-cb781d1a2c03",
+                      "key": "caseId",
+                      "value": "<string>",
+                      "description": "(Required) Unique identifier for the case"
+                    }
+                  ]
+                },
+                "description": "Update the status, priority, or other attributes of a security case."
+              },
+              "response": [
+                {
+                  "id": "5b96c92f-b553-4212-bf44-78e27f3f66f1",
+                  "name": "Case updated successfully",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"investigating\",\n  \"priority\": \"low\",\n  \"assignee\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/cases/:caseId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "cases",
+                        ":caseId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "caseId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"closed\",\n  \"priority\": \"low\",\n  \"assignee\": \"<string>\",\n  \"tenant_id\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"alert_count\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T03:05:31.000Z",
+                  "updatedAt": "2026-07-28T03:05:31.000Z",
+                  "uid": "35240-5b96c92f-b553-4212-bf44-78e27f3f66f1"
+                },
+                {
+                  "id": "eecc9e3c-639b-4d5f-ac2d-fce37f240f40",
+                  "name": "Authentication required or token expired",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"investigating\",\n  \"priority\": \"low\",\n  \"assignee\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/cases/:caseId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "cases",
+                        ":caseId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "caseId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T03:05:31.000Z",
+                  "updatedAt": "2026-07-28T03:05:31.000Z",
+                  "uid": "35240-eecc9e3c-639b-4d5f-ac2d-fce37f240f40"
+                },
+                {
+                  "id": "85414450-912e-4759-b4f1-cf8b0022c42b",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"investigating\",\n  \"priority\": \"low\",\n  \"assignee\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/cases/:caseId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "cases",
+                        ":caseId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "caseId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T03:05:31.000Z",
+                  "updatedAt": "2026-07-28T03:05:31.000Z",
+                  "uid": "35240-85414450-912e-4759-b4f1-cf8b0022c42b"
+                }
+              ],
+              "createdAt": "2026-07-28T03:05:31.000Z",
+              "updatedAt": "2026-07-28T03:05:31.000Z",
+              "uid": "35240-2a77cfe3-2a0d-4fb0-93c8-d1d5574d063a"
+            },
+            {
+              "name": "Close Case",
+              "id": "a46da7e0-fcfd-40a2-8f00-7ca6ef28dabd",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/cases/:caseId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "cases",
+                    ":caseId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "1ce046a3-d6f6-466f-bec0-6ee6d6659db8",
+                      "key": "caseId",
+                      "value": "<string>",
+                      "description": "(Required) Unique identifier for the case"
+                    }
+                  ]
+                },
+                "description": "Close a security case in the platform."
+              },
+              "response": [
+                {
+                  "id": "0cff1675-5616-482b-89bc-c7dfd33d8c9d",
+                  "name": "Case closed successfully",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/cases/:caseId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "cases",
+                        ":caseId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "caseId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:05:31.000Z",
+                  "updatedAt": "2026-07-28T03:05:31.000Z",
+                  "uid": "35240-0cff1675-5616-482b-89bc-c7dfd33d8c9d"
+                },
+                {
+                  "id": "ef08eea1-2c28-462d-a9e8-e12be631ed32",
+                  "name": "Authentication required or token expired",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/cases/:caseId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "cases",
+                        ":caseId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "caseId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T03:05:31.000Z",
+                  "updatedAt": "2026-07-28T03:05:31.000Z",
+                  "uid": "35240-ef08eea1-2c28-462d-a9e8-e12be631ed32"
+                },
+                {
+                  "id": "e202989d-dcb2-4c02-b9f6-1007eee8b440",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/cases/:caseId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "cases",
+                        ":caseId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "caseId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T03:05:31.000Z",
+                  "updatedAt": "2026-07-28T03:05:31.000Z",
+                  "uid": "35240-e202989d-dcb2-4c02-b9f6-1007eee8b440"
+                }
+              ],
+              "createdAt": "2026-07-28T03:05:31.000Z",
+              "updatedAt": "2026-07-28T03:05:31.000Z",
+              "uid": "35240-a46da7e0-fcfd-40a2-8f00-7ca6ef28dabd"
+            }
+          ],
+          "id": "a0e8c069-0799-4be6-a3ea-641d8dce9d72",
+          "createdAt": "2026-07-28T03:05:31.000Z",
+          "updatedAt": "2026-07-28T03:05:31.000Z",
+          "uid": "35240-a0e8c069-0799-4be6-a3ea-641d8dce9d72"
+        },
+        {
+          "name": "List Cases",
+          "id": "873f902d-9ebd-498c-8f81-4ca85560caa1",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/cases?limit=50&offset=0&status=closed",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "cases"
+              ],
+              "query": [
+                {
+                  "description": "Maximum number of cases to return",
+                  "key": "limit",
+                  "value": "50"
+                },
+                {
+                  "description": "Number of cases to skip for pagination",
+                  "key": "offset",
+                  "value": "0"
+                },
+                {
+                  "description": "Filter cases by status",
+                  "key": "status",
+                  "value": "closed"
+                }
+              ]
+            },
+            "description": "Retrieve a list of security cases from the platform."
+          },
+          "response": [
+            {
+              "id": "3e0766f0-9501-46c0-8674-648056020d8f",
+              "name": "List of cases retrieved successfully",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/cases?limit=50&offset=0&status=closed",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "cases"
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of cases to return",
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "description": "Number of cases to skip for pagination",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Filter cases by status",
+                      "key": "status",
+                      "value": "closed"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"status\": \"investigating\",\n      \"priority\": \"high\",\n      \"assignee\": \"<string>\",\n      \"tenant_id\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"alert_count\": \"<integer>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"status\": \"investigating\",\n      \"priority\": \"high\",\n      \"assignee\": \"<string>\",\n      \"tenant_id\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"alert_count\": \"<integer>\"\n    }\n  ],\n  \"total\": \"<integer>\",\n  \"limit\": \"<integer>\",\n  \"offset\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T03:05:31.000Z",
+              "updatedAt": "2026-07-28T03:05:31.000Z",
+              "uid": "35240-3e0766f0-9501-46c0-8674-648056020d8f"
+            },
+            {
+              "id": "93deb68b-7b07-4bee-b6dd-f2ddaffb7622",
+              "name": "Authentication required or token expired",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/cases?limit=50&offset=0&status=closed",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "cases"
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of cases to return",
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "description": "Number of cases to skip for pagination",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Filter cases by status",
+                      "key": "status",
+                      "value": "closed"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T03:05:31.000Z",
+              "updatedAt": "2026-07-28T03:05:31.000Z",
+              "uid": "35240-93deb68b-7b07-4bee-b6dd-f2ddaffb7622"
+            }
+          ],
+          "createdAt": "2026-07-28T03:05:31.000Z",
+          "updatedAt": "2026-07-28T03:05:31.000Z",
+          "uid": "35240-873f902d-9ebd-498c-8f81-4ca85560caa1"
+        },
+        {
+          "name": "Create Case",
+          "id": "e08ca1e9-00b7-4112-9b9b-69484ec62a73",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"priority\": \"critical\",\n  \"assignee\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/cases",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "cases"
+              ]
+            },
+            "description": "Create a new security case in the platform."
+          },
+          "response": [
+            {
+              "id": "a11c0941-f91a-4061-a328-ebb60a710c90",
+              "name": "Case created successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"priority\": \"critical\",\n  \"assignee\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/cases",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "cases"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"closed\",\n  \"priority\": \"low\",\n  \"assignee\": \"<string>\",\n  \"tenant_id\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"alert_count\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T03:05:31.000Z",
+              "updatedAt": "2026-07-28T03:05:31.000Z",
+              "uid": "35240-a11c0941-f91a-4061-a328-ebb60a710c90"
+            },
+            {
+              "id": "0127c5db-482c-4140-878d-689590ee12e0",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"priority\": \"critical\",\n  \"assignee\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/cases",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "cases"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T03:05:31.000Z",
+              "updatedAt": "2026-07-28T03:05:31.000Z",
+              "uid": "35240-0127c5db-482c-4140-878d-689590ee12e0"
+            },
+            {
+              "id": "1c8114a1-9a1b-487f-bcff-a14425facbd0",
+              "name": "Authentication required or token expired",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"priority\": \"critical\",\n  \"assignee\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/cases",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "cases"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T03:05:31.000Z",
+              "updatedAt": "2026-07-28T03:05:31.000Z",
+              "uid": "35240-1c8114a1-9a1b-487f-bcff-a14425facbd0"
+            }
+          ],
+          "createdAt": "2026-07-28T03:05:31.000Z",
+          "updatedAt": "2026-07-28T03:05:31.000Z",
+          "uid": "35240-e08ca1e9-00b7-4112-9b9b-69484ec62a73"
+        }
+      ],
+      "id": "94c08b18-c7f7-4b64-9c39-68f5240fcb34",
+      "createdAt": "2026-07-28T03:05:31.000Z",
+      "updatedAt": "2026-07-28T03:05:31.000Z",
+      "uid": "35240-94c08b18-c7f7-4b64-9c39-68f5240fcb34"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "platformHostname",
+      "value": "your-platform.stellarcyber.ai"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{platformHostname}}/connect/api/v1"
+    }
+  ]
+}

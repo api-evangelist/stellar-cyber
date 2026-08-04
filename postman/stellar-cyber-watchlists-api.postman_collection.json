@@ -1,0 +1,499 @@
+{
+  "info": {
+    "_postman_id": "8a4a6a5f-3395-4aaf-bcae-5c43f383aca2",
+    "name": "Stellar Cyber Open XDR Alerts Watchlists API",
+    "description": "The Stellar Cyber REST API provides programmatic access to the Open XDR platform, enabling automation of security operations including case management, tenant administration, connector management, alert handling, query operations, user management, watchlists, sensors, and security event management.\n\nContact Support:\n Name: Stellar Cyber Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:05:42.000Z",
+    "updatedAt": "2026-07-28T03:05:42.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-8a4a6a5f-3395-4aaf-bcae-5c43f383aca2"
+  },
+  "item": [
+    {
+      "name": "watchlists",
+      "item": [
+        {
+          "name": "{watchlistId}",
+          "item": [
+            {
+              "name": "Delete Watchlist",
+              "id": "774020cc-2cb8-4a61-a0b0-2ca17ae65a47",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/watchlists/:watchlistId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "watchlists",
+                    ":watchlistId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "38a6b3f2-998d-46d8-a4f0-a67f2bff79b2",
+                      "key": "watchlistId",
+                      "value": "<string>",
+                      "description": "(Required) Unique identifier for the watchlist"
+                    }
+                  ]
+                },
+                "description": "Delete a watchlist."
+              },
+              "response": [
+                {
+                  "id": "5ba67aae-c74e-4fd5-bd77-929ddef4f67c",
+                  "name": "Watchlist deleted successfully",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/watchlists/:watchlistId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "watchlists",
+                        ":watchlistId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "watchlistId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:05:42.000Z",
+                  "updatedAt": "2026-07-28T03:05:42.000Z",
+                  "uid": "35240-5ba67aae-c74e-4fd5-bd77-929ddef4f67c"
+                },
+                {
+                  "id": "338d4f09-de2c-4925-aa13-a60044af61eb",
+                  "name": "Authentication required or token expired",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/watchlists/:watchlistId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "watchlists",
+                        ":watchlistId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "watchlistId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T03:05:42.000Z",
+                  "updatedAt": "2026-07-28T03:05:42.000Z",
+                  "uid": "35240-338d4f09-de2c-4925-aa13-a60044af61eb"
+                },
+                {
+                  "id": "580db7dd-d290-41cb-8bd2-9c14e3c5edc3",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/watchlists/:watchlistId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "watchlists",
+                        ":watchlistId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "watchlistId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T03:05:42.000Z",
+                  "updatedAt": "2026-07-28T03:05:42.000Z",
+                  "uid": "35240-580db7dd-d290-41cb-8bd2-9c14e3c5edc3"
+                }
+              ],
+              "createdAt": "2026-07-28T03:05:42.000Z",
+              "updatedAt": "2026-07-28T03:05:42.000Z",
+              "uid": "35240-774020cc-2cb8-4a61-a0b0-2ca17ae65a47"
+            }
+          ],
+          "id": "607802df-04b4-44a4-b09b-9a77b89683bc",
+          "createdAt": "2026-07-28T03:05:42.000Z",
+          "updatedAt": "2026-07-28T03:05:42.000Z",
+          "uid": "35240-607802df-04b4-44a4-b09b-9a77b89683bc"
+        },
+        {
+          "name": "List Watchlists",
+          "id": "4e2c6dea-2baf-44af-bbfb-cd83a4eea836",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/watchlists",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "watchlists"
+              ]
+            },
+            "description": "Retrieve all configured watchlists."
+          },
+          "response": [
+            {
+              "id": "2526a50b-5c4b-4acb-8e12-ec6360148830",
+              "name": "List of watchlists",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/watchlists",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "watchlists"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"entries\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"created_at\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"entries\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"created_at\": \"<dateTime>\"\n    }\n  ],\n  \"total\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T03:05:42.000Z",
+              "updatedAt": "2026-07-28T03:05:42.000Z",
+              "uid": "35240-2526a50b-5c4b-4acb-8e12-ec6360148830"
+            },
+            {
+              "id": "7b1286c3-a0b0-4e19-87cc-ed84544bc405",
+              "name": "Authentication required or token expired",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/watchlists",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "watchlists"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T03:05:42.000Z",
+              "updatedAt": "2026-07-28T03:05:42.000Z",
+              "uid": "35240-7b1286c3-a0b0-4e19-87cc-ed84544bc405"
+            }
+          ],
+          "createdAt": "2026-07-28T03:05:42.000Z",
+          "updatedAt": "2026-07-28T03:05:42.000Z",
+          "uid": "35240-4e2c6dea-2baf-44af-bbfb-cd83a4eea836"
+        },
+        {
+          "name": "Create Watchlist",
+          "id": "3d04db59-c371-4da3-a322-742ae4bfe011",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"entries\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/watchlists",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "watchlists"
+              ]
+            },
+            "description": "Create a new watchlist for tracking threat indicators."
+          },
+          "response": [
+            {
+              "id": "5ea9f542-4311-4b9f-92fc-9663e570dfa4",
+              "name": "Watchlist created successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"entries\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/watchlists",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "watchlists"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"entries\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"created_at\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T03:05:42.000Z",
+              "updatedAt": "2026-07-28T03:05:42.000Z",
+              "uid": "35240-5ea9f542-4311-4b9f-92fc-9663e570dfa4"
+            },
+            {
+              "id": "391f547e-b244-4c42-941d-c2e53adad154",
+              "name": "Authentication required or token expired",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"entries\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/watchlists",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "watchlists"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T03:05:42.000Z",
+              "updatedAt": "2026-07-28T03:05:42.000Z",
+              "uid": "35240-391f547e-b244-4c42-941d-c2e53adad154"
+            }
+          ],
+          "createdAt": "2026-07-28T03:05:42.000Z",
+          "updatedAt": "2026-07-28T03:05:42.000Z",
+          "uid": "35240-3d04db59-c371-4da3-a322-742ae4bfe011"
+        }
+      ],
+      "id": "27ddb66e-2636-49af-a696-9b31b3722ffd",
+      "createdAt": "2026-07-28T03:05:42.000Z",
+      "updatedAt": "2026-07-28T03:05:42.000Z",
+      "uid": "35240-27ddb66e-2636-49af-a696-9b31b3722ffd"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "platformHostname",
+      "value": "your-platform.stellarcyber.ai"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{platformHostname}}/connect/api/v1"
+    }
+  ]
+}

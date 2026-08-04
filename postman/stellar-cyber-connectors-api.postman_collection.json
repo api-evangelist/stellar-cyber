@@ -1,0 +1,917 @@
+{
+  "info": {
+    "_postman_id": "8ed011e0-794d-46cc-ae1d-e2b317437263",
+    "name": "Stellar Cyber Open XDR Alerts Connectors API",
+    "description": "The Stellar Cyber REST API provides programmatic access to the Open XDR platform, enabling automation of security operations including case management, tenant administration, connector management, alert handling, query operations, user management, watchlists, sensors, and security event management.\n\nContact Support:\n Name: Stellar Cyber Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:05:32.000Z",
+    "updatedAt": "2026-07-28T03:05:32.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-8ed011e0-794d-46cc-ae1d-e2b317437263"
+  },
+  "item": [
+    {
+      "name": "connectors",
+      "item": [
+        {
+          "name": "{connectorId}",
+          "item": [
+            {
+              "name": "Get Connector",
+              "id": "27674da1-70e3-45c2-a127-6a550bdfad66",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/connectors/:connectorId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "connectors",
+                    ":connectorId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "6108db5d-18d3-489f-82b8-6b09b05d1fa7",
+                      "key": "connectorId",
+                      "value": "<string>",
+                      "description": "(Required) Unique identifier for the connector"
+                    }
+                  ]
+                },
+                "description": "Retrieve details of a specific connector."
+              },
+              "response": [
+                {
+                  "id": "19691804-cca5-4b6c-bdd2-5aec33e3ab49",
+                  "name": "Connector details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/connectors/:connectorId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "connectors",
+                        ":connectorId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "connectorId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"status\": \"error\",\n  \"checkpoint\": \"<dateTime>\",\n  \"created_at\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T03:05:33.000Z",
+                  "updatedAt": "2026-07-28T03:05:33.000Z",
+                  "uid": "35240-19691804-cca5-4b6c-bdd2-5aec33e3ab49"
+                },
+                {
+                  "id": "e62e2b31-a5ce-474c-a10e-81335de37b68",
+                  "name": "Authentication required or token expired",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/connectors/:connectorId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "connectors",
+                        ":connectorId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "connectorId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T03:05:33.000Z",
+                  "updatedAt": "2026-07-28T03:05:33.000Z",
+                  "uid": "35240-e62e2b31-a5ce-474c-a10e-81335de37b68"
+                },
+                {
+                  "id": "69bb25ff-29af-4d0b-8cb3-51fa61afc92e",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/connectors/:connectorId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "connectors",
+                        ":connectorId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "connectorId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T03:05:33.000Z",
+                  "updatedAt": "2026-07-28T03:05:33.000Z",
+                  "uid": "35240-69bb25ff-29af-4d0b-8cb3-51fa61afc92e"
+                }
+              ],
+              "createdAt": "2026-07-28T03:05:33.000Z",
+              "updatedAt": "2026-07-28T03:05:33.000Z",
+              "uid": "35240-27674da1-70e3-45c2-a127-6a550bdfad66"
+            },
+            {
+              "name": "Update Connector",
+              "id": "bbd51bba-6453-4d56-a018-c9811432828b",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"config\": {},\n  \"checkpoint\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/connectors/:connectorId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "connectors",
+                    ":connectorId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "d410f781-2f25-47ea-b1e6-6fd0bc2140c6",
+                      "key": "connectorId",
+                      "value": "<string>",
+                      "description": "(Required) Unique identifier for the connector"
+                    }
+                  ]
+                },
+                "description": "Update connector configuration or checkpoint timestamp."
+              },
+              "response": [
+                {
+                  "id": "b3157aa4-77d4-4b60-be70-a3cd7fc9043b",
+                  "name": "Connector updated successfully",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"config\": {},\n  \"checkpoint\": \"<dateTime>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/connectors/:connectorId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "connectors",
+                        ":connectorId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "connectorId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"status\": \"error\",\n  \"checkpoint\": \"<dateTime>\",\n  \"created_at\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T03:05:33.000Z",
+                  "updatedAt": "2026-07-28T03:05:33.000Z",
+                  "uid": "35240-b3157aa4-77d4-4b60-be70-a3cd7fc9043b"
+                },
+                {
+                  "id": "6d3b84fd-d4fa-4ae0-b639-493fbbf57542",
+                  "name": "Authentication required or token expired",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"config\": {},\n  \"checkpoint\": \"<dateTime>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/connectors/:connectorId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "connectors",
+                        ":connectorId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "connectorId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T03:05:33.000Z",
+                  "updatedAt": "2026-07-28T03:05:33.000Z",
+                  "uid": "35240-6d3b84fd-d4fa-4ae0-b639-493fbbf57542"
+                }
+              ],
+              "createdAt": "2026-07-28T03:05:33.000Z",
+              "updatedAt": "2026-07-28T03:05:33.000Z",
+              "uid": "35240-bbd51bba-6453-4d56-a018-c9811432828b"
+            },
+            {
+              "name": "Delete Connector",
+              "id": "a129816f-a385-44a0-9e2f-a14e75e7c47f",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/connectors/:connectorId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "connectors",
+                    ":connectorId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "dc188f9e-2df1-44ea-8134-ed5b5223f1c3",
+                      "key": "connectorId",
+                      "value": "<string>",
+                      "description": "(Required) Unique identifier for the connector"
+                    }
+                  ]
+                },
+                "description": "Delete a data connector."
+              },
+              "response": [
+                {
+                  "id": "e5b9a002-30a0-4587-ba3e-72d1748f57b3",
+                  "name": "Connector deleted successfully",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/connectors/:connectorId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "connectors",
+                        ":connectorId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "connectorId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:05:33.000Z",
+                  "updatedAt": "2026-07-28T03:05:33.000Z",
+                  "uid": "35240-e5b9a002-30a0-4587-ba3e-72d1748f57b3"
+                },
+                {
+                  "id": "f8588634-1e26-494d-9947-b5bafc147576",
+                  "name": "Authentication required or token expired",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/connectors/:connectorId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "connectors",
+                        ":connectorId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "connectorId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T03:05:33.000Z",
+                  "updatedAt": "2026-07-28T03:05:33.000Z",
+                  "uid": "35240-f8588634-1e26-494d-9947-b5bafc147576"
+                },
+                {
+                  "id": "b9a1f7d3-a605-4dfc-a270-857aa4f4c8bf",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/connectors/:connectorId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "connectors",
+                        ":connectorId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "connectorId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T03:05:33.000Z",
+                  "updatedAt": "2026-07-28T03:05:33.000Z",
+                  "uid": "35240-b9a1f7d3-a605-4dfc-a270-857aa4f4c8bf"
+                }
+              ],
+              "createdAt": "2026-07-28T03:05:33.000Z",
+              "updatedAt": "2026-07-28T03:05:33.000Z",
+              "uid": "35240-a129816f-a385-44a0-9e2f-a14e75e7c47f"
+            }
+          ],
+          "id": "637a6870-8751-4855-ba0e-d6a794dfd2cc",
+          "createdAt": "2026-07-28T03:05:33.000Z",
+          "updatedAt": "2026-07-28T03:05:33.000Z",
+          "uid": "35240-637a6870-8751-4855-ba0e-d6a794dfd2cc"
+        },
+        {
+          "name": "List Connectors",
+          "id": "64051999-4659-4240-a44f-5840e82adfb0",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/connectors",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "connectors"
+              ]
+            },
+            "description": "Retrieve all configured data connectors."
+          },
+          "response": [
+            {
+              "id": "5b276fe2-2a20-4110-a83b-518f88e5f94e",
+              "name": "List of connectors",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/connectors",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "connectors"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"status\": \"inactive\",\n      \"checkpoint\": \"<dateTime>\",\n      \"created_at\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"status\": \"inactive\",\n      \"checkpoint\": \"<dateTime>\",\n      \"created_at\": \"<dateTime>\"\n    }\n  ],\n  \"total\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T03:05:33.000Z",
+              "updatedAt": "2026-07-28T03:05:33.000Z",
+              "uid": "35240-5b276fe2-2a20-4110-a83b-518f88e5f94e"
+            },
+            {
+              "id": "a8dc5aae-7686-4efa-b13a-0e4986b27bfa",
+              "name": "Authentication required or token expired",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/connectors",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "connectors"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T03:05:33.000Z",
+              "updatedAt": "2026-07-28T03:05:33.000Z",
+              "uid": "35240-a8dc5aae-7686-4efa-b13a-0e4986b27bfa"
+            }
+          ],
+          "createdAt": "2026-07-28T03:05:33.000Z",
+          "updatedAt": "2026-07-28T03:05:33.000Z",
+          "uid": "35240-64051999-4659-4240-a44f-5840e82adfb0"
+        },
+        {
+          "name": "Create Connector",
+          "id": "2ed39eef-5ebd-45f9-abb1-f16abb8d0853",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"config\": {}\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/connectors",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "connectors"
+              ]
+            },
+            "description": "Create a new data connector for ingesting security telemetry."
+          },
+          "response": [
+            {
+              "id": "07584028-ade7-4161-b5f2-f659a904a73d",
+              "name": "Connector created successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"config\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/connectors",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "connectors"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"status\": \"error\",\n  \"checkpoint\": \"<dateTime>\",\n  \"created_at\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T03:05:33.000Z",
+              "updatedAt": "2026-07-28T03:05:33.000Z",
+              "uid": "35240-07584028-ade7-4161-b5f2-f659a904a73d"
+            },
+            {
+              "id": "2ffdb57f-493d-4ec6-8dd8-e07973cdbc34",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"config\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/connectors",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "connectors"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T03:05:33.000Z",
+              "updatedAt": "2026-07-28T03:05:33.000Z",
+              "uid": "35240-2ffdb57f-493d-4ec6-8dd8-e07973cdbc34"
+            },
+            {
+              "id": "d3f0ea4c-75c3-4f71-9b4c-c9fc70babcd4",
+              "name": "Authentication required or token expired",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"config\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/connectors",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "connectors"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T03:05:33.000Z",
+              "updatedAt": "2026-07-28T03:05:33.000Z",
+              "uid": "35240-d3f0ea4c-75c3-4f71-9b4c-c9fc70babcd4"
+            }
+          ],
+          "createdAt": "2026-07-28T03:05:33.000Z",
+          "updatedAt": "2026-07-28T03:05:33.000Z",
+          "uid": "35240-2ed39eef-5ebd-45f9-abb1-f16abb8d0853"
+        }
+      ],
+      "id": "ef2b8de8-7dcb-4e42-9019-96683399ed0c",
+      "createdAt": "2026-07-28T03:05:33.000Z",
+      "updatedAt": "2026-07-28T03:05:33.000Z",
+      "uid": "35240-ef2b8de8-7dcb-4e42-9019-96683399ed0c"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "platformHostname",
+      "value": "your-platform.stellarcyber.ai"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{platformHostname}}/connect/api/v1"
+    }
+  ]
+}

@@ -1,0 +1,629 @@
+{
+  "info": {
+    "_postman_id": "52b21226-2a9c-4187-b1f3-e3a04de76c6e",
+    "name": "Stellar Cyber Open XDR Alerts Queries API",
+    "description": "The Stellar Cyber REST API provides programmatic access to the Open XDR platform, enabling automation of security operations including case management, tenant administration, connector management, alert handling, query operations, user management, watchlists, sensors, and security event management.\n\nContact Support:\n Name: Stellar Cyber Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:05:38.000Z",
+    "updatedAt": "2026-07-28T03:05:38.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-52b21226-2a9c-4187-b1f3-e3a04de76c6e"
+  },
+  "item": [
+    {
+      "name": "queries",
+      "item": [
+        {
+          "name": "{queryId}",
+          "item": [
+            {
+              "name": "Update Query",
+              "id": "76968ac5-dee9-438f-a726-94e91744226f",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"query\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/queries/:queryId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "queries",
+                    ":queryId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "02f50083-9295-4964-a293-88c0cbbfb44c",
+                      "key": "queryId",
+                      "value": "<string>",
+                      "description": "(Required) Unique identifier for the query"
+                    }
+                  ]
+                },
+                "description": "Update an existing saved query."
+              },
+              "response": [
+                {
+                  "id": "b3ac4984-2e87-4c9a-bfdb-a6a2ccf9464f",
+                  "name": "Query updated successfully",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"query\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/queries/:queryId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "queries",
+                        ":queryId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "queryId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"query\": \"<string>\",\n  \"created_at\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T03:05:38.000Z",
+                  "updatedAt": "2026-07-28T03:05:38.000Z",
+                  "uid": "35240-b3ac4984-2e87-4c9a-bfdb-a6a2ccf9464f"
+                },
+                {
+                  "id": "b3ae8473-fdd6-403b-9595-3ee962558127",
+                  "name": "Authentication required or token expired",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"query\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/queries/:queryId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "queries",
+                        ":queryId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "queryId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T03:05:38.000Z",
+                  "updatedAt": "2026-07-28T03:05:38.000Z",
+                  "uid": "35240-b3ae8473-fdd6-403b-9595-3ee962558127"
+                }
+              ],
+              "createdAt": "2026-07-28T03:05:38.000Z",
+              "updatedAt": "2026-07-28T03:05:38.000Z",
+              "uid": "35240-76968ac5-dee9-438f-a726-94e91744226f"
+            },
+            {
+              "name": "Delete Query",
+              "id": "4b41e990-a33e-4575-a7f3-948542e6c92b",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/queries/:queryId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "queries",
+                    ":queryId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "0f6e22a3-fd6c-420d-88b3-96db8b6db7dc",
+                      "key": "queryId",
+                      "value": "<string>",
+                      "description": "(Required) Unique identifier for the query"
+                    }
+                  ]
+                },
+                "description": "Delete a saved query."
+              },
+              "response": [
+                {
+                  "id": "41e370c7-758b-4d17-8d89-7a792d2a9037",
+                  "name": "Query deleted successfully",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/queries/:queryId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "queries",
+                        ":queryId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "queryId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:05:38.000Z",
+                  "updatedAt": "2026-07-28T03:05:38.000Z",
+                  "uid": "35240-41e370c7-758b-4d17-8d89-7a792d2a9037"
+                },
+                {
+                  "id": "979e450c-03a4-47a7-9d19-7c8f0aadb2e3",
+                  "name": "Authentication required or token expired",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/queries/:queryId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "queries",
+                        ":queryId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "queryId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T03:05:38.000Z",
+                  "updatedAt": "2026-07-28T03:05:38.000Z",
+                  "uid": "35240-979e450c-03a4-47a7-9d19-7c8f0aadb2e3"
+                }
+              ],
+              "createdAt": "2026-07-28T03:05:38.000Z",
+              "updatedAt": "2026-07-28T03:05:38.000Z",
+              "uid": "35240-4b41e990-a33e-4575-a7f3-948542e6c92b"
+            }
+          ],
+          "id": "3bb0ff63-987e-4cbe-a519-fed322f4e8b8",
+          "createdAt": "2026-07-28T03:05:38.000Z",
+          "updatedAt": "2026-07-28T03:05:38.000Z",
+          "uid": "35240-3bb0ff63-987e-4cbe-a519-fed322f4e8b8"
+        },
+        {
+          "name": "List Queries",
+          "id": "1b4195c6-ac3b-4c92-bb27-67be2092cb17",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/queries",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "queries"
+              ]
+            },
+            "description": "Retrieve all saved queries."
+          },
+          "response": [
+            {
+              "id": "541c0278-3604-4bf3-9895-11820c157344",
+              "name": "List of saved queries",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/queries",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "queries"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"query\": \"<string>\",\n      \"created_at\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"query\": \"<string>\",\n      \"created_at\": \"<dateTime>\"\n    }\n  ],\n  \"total\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T03:05:38.000Z",
+              "updatedAt": "2026-07-28T03:05:38.000Z",
+              "uid": "35240-541c0278-3604-4bf3-9895-11820c157344"
+            },
+            {
+              "id": "8d9b281a-ee3e-4fb4-8e07-e9c4e099cbf4",
+              "name": "Authentication required or token expired",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/queries",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "queries"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T03:05:38.000Z",
+              "updatedAt": "2026-07-28T03:05:38.000Z",
+              "uid": "35240-8d9b281a-ee3e-4fb4-8e07-e9c4e099cbf4"
+            }
+          ],
+          "createdAt": "2026-07-28T03:05:38.000Z",
+          "updatedAt": "2026-07-28T03:05:38.000Z",
+          "uid": "35240-1b4195c6-ac3b-4c92-bb27-67be2092cb17"
+        },
+        {
+          "name": "Create Query",
+          "id": "1e3664e5-71ac-4df9-9e75-8d741d51f8d1",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"query\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/queries",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "queries"
+              ]
+            },
+            "description": "Create a new saved query."
+          },
+          "response": [
+            {
+              "id": "d7c97038-3865-4a9c-a869-507a4c1cd212",
+              "name": "Query created successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"query\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/queries",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "queries"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"query\": \"<string>\",\n  \"created_at\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T03:05:38.000Z",
+              "updatedAt": "2026-07-28T03:05:38.000Z",
+              "uid": "35240-d7c97038-3865-4a9c-a869-507a4c1cd212"
+            },
+            {
+              "id": "45ff99a7-a621-4e74-b353-f18e08ec20d8",
+              "name": "Authentication required or token expired",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"query\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/queries",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "queries"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T03:05:38.000Z",
+              "updatedAt": "2026-07-28T03:05:38.000Z",
+              "uid": "35240-45ff99a7-a621-4e74-b353-f18e08ec20d8"
+            }
+          ],
+          "createdAt": "2026-07-28T03:05:38.000Z",
+          "updatedAt": "2026-07-28T03:05:38.000Z",
+          "uid": "35240-1e3664e5-71ac-4df9-9e75-8d741d51f8d1"
+        }
+      ],
+      "id": "0c0aebfe-1a47-4645-8885-64f06b0fc678",
+      "createdAt": "2026-07-28T03:05:38.000Z",
+      "updatedAt": "2026-07-28T03:05:38.000Z",
+      "uid": "35240-0c0aebfe-1a47-4645-8885-64f06b0fc678"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "platformHostname",
+      "value": "your-platform.stellarcyber.ai"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{platformHostname}}/connect/api/v1"
+    }
+  ]
+}

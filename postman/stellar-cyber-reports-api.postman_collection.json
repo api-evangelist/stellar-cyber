@@ -1,0 +1,499 @@
+{
+  "info": {
+    "_postman_id": "d9cea9a2-8d42-4400-a358-5382d58489cd",
+    "name": "Stellar Cyber Open XDR Alerts Reports API",
+    "description": "The Stellar Cyber REST API provides programmatic access to the Open XDR platform, enabling automation of security operations including case management, tenant administration, connector management, alert handling, query operations, user management, watchlists, sensors, and security event management.\n\nContact Support:\n Name: Stellar Cyber Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:05:39.000Z",
+    "updatedAt": "2026-07-28T03:05:39.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-d9cea9a2-8d42-4400-a358-5382d58489cd"
+  },
+  "item": [
+    {
+      "name": "reports",
+      "item": [
+        {
+          "name": "{reportId}",
+          "item": [
+            {
+              "name": "Delete Report",
+              "id": "99beedfe-0d0b-48f1-805b-8555b14e5175",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/reports/:reportId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "reports",
+                    ":reportId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "06fc9802-4c5a-4e7b-a544-ce045bd7b299",
+                      "key": "reportId",
+                      "value": "<string>",
+                      "description": "(Required) Unique identifier for the report"
+                    }
+                  ]
+                },
+                "description": "Delete a security report."
+              },
+              "response": [
+                {
+                  "id": "ee4f96d2-4756-4c2d-9d45-b58760973d15",
+                  "name": "Report deleted successfully",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/reports/:reportId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "reports",
+                        ":reportId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "reportId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:05:39.000Z",
+                  "updatedAt": "2026-07-28T03:05:39.000Z",
+                  "uid": "35240-ee4f96d2-4756-4c2d-9d45-b58760973d15"
+                },
+                {
+                  "id": "2cc85740-d23e-4e80-b618-61fa90b4c1c1",
+                  "name": "Authentication required or token expired",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/reports/:reportId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "reports",
+                        ":reportId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "reportId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T03:05:39.000Z",
+                  "updatedAt": "2026-07-28T03:05:39.000Z",
+                  "uid": "35240-2cc85740-d23e-4e80-b618-61fa90b4c1c1"
+                },
+                {
+                  "id": "4707e508-7d59-4858-81f7-5e34bedaeb01",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/reports/:reportId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "reports",
+                        ":reportId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "reportId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T03:05:39.000Z",
+                  "updatedAt": "2026-07-28T03:05:39.000Z",
+                  "uid": "35240-4707e508-7d59-4858-81f7-5e34bedaeb01"
+                }
+              ],
+              "createdAt": "2026-07-28T03:05:39.000Z",
+              "updatedAt": "2026-07-28T03:05:39.000Z",
+              "uid": "35240-99beedfe-0d0b-48f1-805b-8555b14e5175"
+            }
+          ],
+          "id": "3eb3c935-1428-4d55-a823-70223418f0f5",
+          "createdAt": "2026-07-28T03:05:39.000Z",
+          "updatedAt": "2026-07-28T03:05:39.000Z",
+          "uid": "35240-3eb3c935-1428-4d55-a823-70223418f0f5"
+        },
+        {
+          "name": "List Reports",
+          "id": "d5a4a40a-4467-4d66-a7ca-9c7d896fa759",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/reports",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "reports"
+              ]
+            },
+            "description": "Retrieve all available security reports."
+          },
+          "response": [
+            {
+              "id": "aafda545-9174-48cd-b140-db7dca23c15e",
+              "name": "List of reports",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/reports",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "reports"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"status\": \"pending\",\n      \"created_at\": \"<dateTime>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"status\": \"pending\",\n      \"created_at\": \"<dateTime>\",\n      \"url\": \"<string>\"\n    }\n  ],\n  \"total\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T03:05:39.000Z",
+              "updatedAt": "2026-07-28T03:05:39.000Z",
+              "uid": "35240-aafda545-9174-48cd-b140-db7dca23c15e"
+            },
+            {
+              "id": "78cce8d6-b031-4045-ac05-3dc742677e7d",
+              "name": "Authentication required or token expired",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/reports",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "reports"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T03:05:39.000Z",
+              "updatedAt": "2026-07-28T03:05:39.000Z",
+              "uid": "35240-78cce8d6-b031-4045-ac05-3dc742677e7d"
+            }
+          ],
+          "createdAt": "2026-07-28T03:05:39.000Z",
+          "updatedAt": "2026-07-28T03:05:39.000Z",
+          "uid": "35240-d5a4a40a-4467-4d66-a7ca-9c7d896fa759"
+        },
+        {
+          "name": "Create Report",
+          "id": "85bfb19e-f6ed-4679-a14c-4093ab121320",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"parameters\": {}\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/reports",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "reports"
+              ]
+            },
+            "description": "Generate a new security report."
+          },
+          "response": [
+            {
+              "id": "24a7c06b-54e4-4682-9ef1-eb5a80589e5b",
+              "name": "Report created successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"parameters\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/reports",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "reports"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"status\": \"pending\",\n  \"created_at\": \"<dateTime>\",\n  \"url\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T03:05:39.000Z",
+              "updatedAt": "2026-07-28T03:05:39.000Z",
+              "uid": "35240-24a7c06b-54e4-4682-9ef1-eb5a80589e5b"
+            },
+            {
+              "id": "3f129aa0-d327-4731-b873-b932476e8aab",
+              "name": "Authentication required or token expired",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"parameters\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/reports",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "reports"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T03:05:39.000Z",
+              "updatedAt": "2026-07-28T03:05:39.000Z",
+              "uid": "35240-3f129aa0-d327-4731-b873-b932476e8aab"
+            }
+          ],
+          "createdAt": "2026-07-28T03:05:39.000Z",
+          "updatedAt": "2026-07-28T03:05:39.000Z",
+          "uid": "35240-85bfb19e-f6ed-4679-a14c-4093ab121320"
+        }
+      ],
+      "id": "0ff05e9d-84eb-4182-96f7-de7f6363390a",
+      "createdAt": "2026-07-28T03:05:39.000Z",
+      "updatedAt": "2026-07-28T03:05:39.000Z",
+      "uid": "35240-0ff05e9d-84eb-4182-96f7-de7f6363390a"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "platformHostname",
+      "value": "your-platform.stellarcyber.ai"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{platformHostname}}/connect/api/v1"
+    }
+  ]
+}

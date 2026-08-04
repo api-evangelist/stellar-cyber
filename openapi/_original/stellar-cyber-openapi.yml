@@ -1,0 +1,1256 @@
+openapi: 3.0.3
+info:
+  title: Stellar Cyber Open XDR API
+  description: >-
+    The Stellar Cyber REST API provides programmatic access to the Open XDR platform,
+    enabling automation of security operations including case management, tenant
+    administration, connector management, alert handling, query operations, user
+    management, watchlists, sensors, and security event management.
+  version: '6.3'
+  contact:
+    name: Stellar Cyber Support
+    url: https://stellarcyber.zendesk.com
+  license:
+    name: Proprietary
+    url: https://stellarcyber.ai/terms/
+servers:
+  - url: https://{platformHostname}/connect/api/v1
+    description: Stellar Cyber Platform API
+    variables:
+      platformHostname:
+        description: Your Stellar Cyber platform hostname
+        default: your-platform.stellarcyber.ai
+security:
+  - bearerAuth: []
+tags:
+  - name: Authentication
+    description: API key and JWT token management
+  - name: Cases
+    description: Security case creation, retrieval, update, and closure
+  - name: Tenants
+    description: Multi-tenant administration and grouping
+  - name: Connectors
+    description: Data connector management for security telemetry ingestion
+  - name: Alerts
+    description: Alert management, tagging, and status updates
+  - name: Events
+    description: Security event management and bulk ingestion
+  - name: Queries
+    description: Saved query management
+  - name: Users
+    description: User and access management
+  - name: Watchlists
+    description: Watchlist creation and management
+  - name: Sensors
+    description: Sensor monitoring and management
+  - name: Reports
+    description: Security report generation and retrieval
+  - name: Playbooks
+    description: ATH Playbook response action management
+paths:
+  /access_token:
+    post:
+      operationId: getAccessToken
+      summary: Get Access Token
+      description: >-
+        Generate a JWT access token using an API key. The JWT expires ten minutes
+        after generation. Use the returned token as a Bearer token in subsequent API calls.
+      tags:
+        - Authentication
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: JWT access token generated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessTokenResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /cases:
+    get:
+      operationId: listCases
+      summary: List Cases
+      description: Retrieve a list of security cases from the platform.
+      tags:
+        - Cases
+      parameters:
+        - name: limit
+          in: query
+          description: Maximum number of cases to return
+          schema:
+            type: integer
+            default: 50
+        - name: offset
+          in: query
+          description: Number of cases to skip for pagination
+          schema:
+            type: integer
+            default: 0
+        - name: status
+          in: query
+          description: Filter cases by status
+          schema:
+            type: string
+            enum: [open, closed, investigating]
+      responses:
+        '200':
+          description: List of cases retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CasesListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createCase
+      summary: Create Case
+      description: Create a new security case in the platform.
+      tags:
+        - Cases
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCaseRequest'
+      responses:
+        '201':
+          description: Case created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Case'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /cases/{caseId}:
+    get:
+      operationId: getCase
+      summary: Get Case
+      description: Retrieve details of a specific security case.
+      tags:
+        - Cases
+      parameters:
+        - $ref: '#/components/parameters/CaseId'
+      responses:
+        '200':
+          description: Case details retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Case'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateCase
+      summary: Update Case
+      description: Update the status, priority, or other attributes of a security case.
+      tags:
+        - Cases
+      parameters:
+        - $ref: '#/components/parameters/CaseId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCaseRequest'
+      responses:
+        '200':
+          description: Case updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Case'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: closeCase
+      summary: Close Case
+      description: Close a security case in the platform.
+      tags:
+        - Cases
+      parameters:
+        - $ref: '#/components/parameters/CaseId'
+      responses:
+        '204':
+          description: Case closed successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /tenants:
+    get:
+      operationId: listTenants
+      summary: List Tenants
+      description: Retrieve all tenants available to the authenticated user.
+      tags:
+        - Tenants
+      responses:
+        '200':
+          description: List of tenants
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantsListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createTenant
+      summary: Create Tenant
+      description: Create a new tenant on the platform (Super Admin only).
+      tags:
+        - Tenants
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTenantRequest'
+      responses:
+        '201':
+          description: Tenant created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tenant'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /tenants/{tenantId}:
+    get:
+      operationId: getTenant
+      summary: Get Tenant
+      description: Retrieve details of a specific tenant.
+      tags:
+        - Tenants
+      parameters:
+        - $ref: '#/components/parameters/TenantId'
+      responses:
+        '200':
+          description: Tenant details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tenant'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateTenant
+      summary: Update Tenant
+      description: Update tenant configuration.
+      tags:
+        - Tenants
+      parameters:
+        - $ref: '#/components/parameters/TenantId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTenantRequest'
+      responses:
+        '200':
+          description: Tenant updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tenant'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    delete:
+      operationId: deleteTenant
+      summary: Delete Tenant
+      description: Delete a tenant from the platform (Super Admin only).
+      tags:
+        - Tenants
+      parameters:
+        - $ref: '#/components/parameters/TenantId'
+      responses:
+        '204':
+          description: Tenant deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /connectors:
+    get:
+      operationId: listConnectors
+      summary: List Connectors
+      description: Retrieve all configured data connectors.
+      tags:
+        - Connectors
+      responses:
+        '200':
+          description: List of connectors
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorsListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createConnector
+      summary: Create Connector
+      description: Create a new data connector for ingesting security telemetry.
+      tags:
+        - Connectors
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateConnectorRequest'
+      responses:
+        '201':
+          description: Connector created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Connector'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /connectors/{connectorId}:
+    get:
+      operationId: getConnector
+      summary: Get Connector
+      description: Retrieve details of a specific connector.
+      tags:
+        - Connectors
+      parameters:
+        - $ref: '#/components/parameters/ConnectorId'
+      responses:
+        '200':
+          description: Connector details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Connector'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateConnector
+      summary: Update Connector
+      description: Update connector configuration or checkpoint timestamp.
+      tags:
+        - Connectors
+      parameters:
+        - $ref: '#/components/parameters/ConnectorId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateConnectorRequest'
+      responses:
+        '200':
+          description: Connector updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Connector'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    delete:
+      operationId: deleteConnector
+      summary: Delete Connector
+      description: Delete a data connector.
+      tags:
+        - Connectors
+      parameters:
+        - $ref: '#/components/parameters/ConnectorId'
+      responses:
+        '204':
+          description: Connector deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /alerts:
+    get:
+      operationId: listAlerts
+      summary: List Alerts
+      description: Retrieve security alerts from the platform.
+      tags:
+        - Alerts
+      parameters:
+        - name: limit
+          in: query
+          description: Maximum number of alerts to return
+          schema:
+            type: integer
+            default: 50
+        - name: offset
+          in: query
+          description: Pagination offset
+          schema:
+            type: integer
+            default: 0
+        - name: status
+          in: query
+          description: Filter by alert status
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of alerts
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlertsListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /alerts/{alertId}:
+    put:
+      operationId: updateAlert
+      summary: Update Alert
+      description: Update alert tags, status, and comments.
+      tags:
+        - Alerts
+      parameters:
+        - $ref: '#/components/parameters/AlertId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateAlertRequest'
+      responses:
+        '200':
+          description: Alert updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Alert'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /events:
+    post:
+      operationId: ingestEvents
+      summary: Ingest Events
+      description: >-
+        Add security event documents to the platform's security event index.
+        Supports both single and bulk event ingestion.
+      tags:
+        - Events
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IngestEventsRequest'
+      responses:
+        '200':
+          description: Events ingested successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IngestEventsResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /queries:
+    get:
+      operationId: listQueries
+      summary: List Queries
+      description: Retrieve all saved queries.
+      tags:
+        - Queries
+      responses:
+        '200':
+          description: List of saved queries
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueriesListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createQuery
+      summary: Create Query
+      description: Create a new saved query.
+      tags:
+        - Queries
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateQueryRequest'
+      responses:
+        '201':
+          description: Query created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Query'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /queries/{queryId}:
+    put:
+      operationId: updateQuery
+      summary: Update Query
+      description: Update an existing saved query.
+      tags:
+        - Queries
+      parameters:
+        - $ref: '#/components/parameters/QueryId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateQueryRequest'
+      responses:
+        '200':
+          description: Query updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Query'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    delete:
+      operationId: deleteQuery
+      summary: Delete Query
+      description: Delete a saved query.
+      tags:
+        - Queries
+      parameters:
+        - $ref: '#/components/parameters/QueryId'
+      responses:
+        '204':
+          description: Query deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /watchlists:
+    get:
+      operationId: listWatchlists
+      summary: List Watchlists
+      description: Retrieve all configured watchlists.
+      tags:
+        - Watchlists
+      responses:
+        '200':
+          description: List of watchlists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WatchlistsListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createWatchlist
+      summary: Create Watchlist
+      description: Create a new watchlist for tracking threat indicators.
+      tags:
+        - Watchlists
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateWatchlistRequest'
+      responses:
+        '201':
+          description: Watchlist created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Watchlist'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /watchlists/{watchlistId}:
+    delete:
+      operationId: deleteWatchlist
+      summary: Delete Watchlist
+      description: Delete a watchlist.
+      tags:
+        - Watchlists
+      parameters:
+        - $ref: '#/components/parameters/WatchlistId'
+      responses:
+        '204':
+          description: Watchlist deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /sensors:
+    get:
+      operationId: listSensors
+      summary: List Sensors
+      description: Retrieve all sensors registered with the platform.
+      tags:
+        - Sensors
+      responses:
+        '200':
+          description: List of sensors
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SensorsListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /sensors/{sensorId}:
+    get:
+      operationId: getSensor
+      summary: Get Sensor
+      description: Retrieve information about a specific sensor.
+      tags:
+        - Sensors
+      parameters:
+        - $ref: '#/components/parameters/SensorId'
+      responses:
+        '200':
+          description: Sensor details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sensor'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteSensor
+      summary: Delete Sensor
+      description: Delete a sensor from the platform.
+      tags:
+        - Sensors
+      parameters:
+        - $ref: '#/components/parameters/SensorId'
+      responses:
+        '204':
+          description: Sensor deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /reports:
+    get:
+      operationId: listReports
+      summary: List Reports
+      description: Retrieve all available security reports.
+      tags:
+        - Reports
+      responses:
+        '200':
+          description: List of reports
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportsListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createReport
+      summary: Create Report
+      description: Generate a new security report.
+      tags:
+        - Reports
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateReportRequest'
+      responses:
+        '201':
+          description: Report created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Report'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /reports/{reportId}:
+    delete:
+      operationId: deleteReport
+      summary: Delete Report
+      description: Delete a security report.
+      tags:
+        - Reports
+      parameters:
+        - $ref: '#/components/parameters/ReportId'
+      responses:
+        '204':
+          description: Report deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /playbooks:
+    get:
+      operationId: listPlaybooks
+      summary: List Playbooks
+      description: Retrieve all ATH Playbook response action definitions.
+      tags:
+        - Playbooks
+      responses:
+        '200':
+          description: List of playbooks
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlaybooksListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createPlaybook
+      summary: Create Playbook
+      description: Create a new ATH Playbook response action.
+      tags:
+        - Playbooks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePlaybookRequest'
+      responses:
+        '201':
+          description: Playbook created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Playbook'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: >-
+        JWT token obtained from /access_token endpoint. Tokens expire after 10 minutes.
+        API keys can also be used as Bearer tokens for the /access_token call.
+  parameters:
+    CaseId:
+      name: caseId
+      in: path
+      required: true
+      description: Unique identifier for the case
+      schema:
+        type: string
+    TenantId:
+      name: tenantId
+      in: path
+      required: true
+      description: Unique identifier for the tenant
+      schema:
+        type: string
+    ConnectorId:
+      name: connectorId
+      in: path
+      required: true
+      description: Unique identifier for the connector
+      schema:
+        type: string
+    AlertId:
+      name: alertId
+      in: path
+      required: true
+      description: Unique identifier for the alert
+      schema:
+        type: string
+    QueryId:
+      name: queryId
+      in: path
+      required: true
+      description: Unique identifier for the query
+      schema:
+        type: string
+    WatchlistId:
+      name: watchlistId
+      in: path
+      required: true
+      description: Unique identifier for the watchlist
+      schema:
+        type: string
+    SensorId:
+      name: sensorId
+      in: path
+      required: true
+      description: Unique identifier for the sensor
+      schema:
+        type: string
+    ReportId:
+      name: reportId
+      in: path
+      required: true
+      description: Unique identifier for the report
+      schema:
+        type: string
+  responses:
+    Unauthorized:
+      description: Authentication required or token expired
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        code:
+          type: integer
+    AccessTokenResponse:
+      type: object
+      properties:
+        access_token:
+          type: string
+          description: JWT access token
+        token_type:
+          type: string
+          example: bearer
+        expires_in:
+          type: integer
+          description: Token expiry in seconds (default 600)
+    Case:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+          enum: [open, closed, investigating]
+        priority:
+          type: string
+          enum: [critical, high, medium, low]
+        assignee:
+          type: string
+        tenant_id:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        alert_count:
+          type: integer
+    CasesListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Case'
+        total:
+          type: integer
+        limit:
+          type: integer
+        offset:
+          type: integer
+    CreateCaseRequest:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        priority:
+          type: string
+          enum: [critical, high, medium, low]
+        assignee:
+          type: string
+    UpdateCaseRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+          enum: [open, closed, investigating]
+        priority:
+          type: string
+          enum: [critical, high, medium, low]
+        assignee:
+          type: string
+    Tenant:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+    TenantsListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tenant'
+        total:
+          type: integer
+    CreateTenantRequest:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+    UpdateTenantRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+    Connector:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+        status:
+          type: string
+          enum: [active, inactive, error]
+        checkpoint:
+          type: string
+          format: date-time
+        created_at:
+          type: string
+          format: date-time
+    ConnectorsListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Connector'
+        total:
+          type: integer
+    CreateConnectorRequest:
+      type: object
+      required:
+        - name
+        - type
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+        config:
+          type: object
+    UpdateConnectorRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        config:
+          type: object
+        checkpoint:
+          type: string
+          format: date-time
+    Alert:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        severity:
+          type: string
+          enum: [critical, high, medium, low, informational]
+        status:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+        tenant_id:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        source:
+          type: string
+    AlertsListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Alert'
+        total:
+          type: integer
+    UpdateAlertRequest:
+      type: object
+      properties:
+        status:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+        comment:
+          type: string
+    IngestEventsRequest:
+      type: object
+      required:
+        - events
+      properties:
+        events:
+          type: array
+          items:
+            type: object
+            description: Security event document in Stellar Cyber format
+    IngestEventsResponse:
+      type: object
+      properties:
+        ingested:
+          type: integer
+        failed:
+          type: integer
+        errors:
+          type: array
+          items:
+            type: string
+    Query:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        query:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+    QueriesListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Query'
+        total:
+          type: integer
+    CreateQueryRequest:
+      type: object
+      required:
+        - name
+        - query
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        query:
+          type: string
+    UpdateQueryRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        query:
+          type: string
+    Watchlist:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        entries:
+          type: array
+          items:
+            type: string
+        created_at:
+          type: string
+          format: date-time
+    WatchlistsListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Watchlist'
+        total:
+          type: integer
+    CreateWatchlistRequest:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        entries:
+          type: array
+          items:
+            type: string
+    Sensor:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+        status:
+          type: string
+          enum: [online, offline, error]
+        ip_address:
+          type: string
+        version:
+          type: string
+        last_seen:
+          type: string
+          format: date-time
+    SensorsListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Sensor'
+        total:
+          type: integer
+    Report:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+        status:
+          type: string
+          enum: [pending, completed, failed]
+        created_at:
+          type: string
+          format: date-time
+        url:
+          type: string
+    ReportsListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Report'
+        total:
+          type: integer
+    CreateReportRequest:
+      type: object
+      required:
+        - name
+        - type
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+        parameters:
+          type: object
+    Playbook:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        trigger:
+          type: string
+        actions:
+          type: array
+          items:
+            type: object
+        enabled:
+          type: boolean
+        created_at:
+          type: string
+          format: date-time
+    PlaybooksListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Playbook'
+        total:
+          type: integer
+    CreatePlaybookRequest:
+      type: object
+      required:
+        - name
+        - trigger
+        - actions
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        trigger:
+          type: string
+        actions:
+          type: array
+          items:
+            type: object
+        enabled:
+          type: boolean

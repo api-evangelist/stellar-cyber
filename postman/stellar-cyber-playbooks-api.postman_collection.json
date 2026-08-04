@@ -1,0 +1,315 @@
+{
+  "info": {
+    "_postman_id": "ba724fc1-ed09-42ea-b21e-abaa1e0efbab",
+    "name": "Stellar Cyber Open XDR Alerts Playbooks API",
+    "description": "The Stellar Cyber REST API provides programmatic access to the Open XDR platform, enabling automation of security operations including case management, tenant administration, connector management, alert handling, query operations, user management, watchlists, sensors, and security event management.\n\nContact Support:\n Name: Stellar Cyber Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:05:37.000Z",
+    "updatedAt": "2026-07-28T03:05:37.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ba724fc1-ed09-42ea-b21e-abaa1e0efbab"
+  },
+  "item": [
+    {
+      "name": "playbooks",
+      "item": [
+        {
+          "name": "List Playbooks",
+          "id": "7ef656b1-e729-4c42-9722-097bb6d08d23",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/playbooks",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "playbooks"
+              ]
+            },
+            "description": "Retrieve all ATH Playbook response action definitions."
+          },
+          "response": [
+            {
+              "id": "96c2786a-0107-44af-b9b8-563515c8fad0",
+              "name": "List of playbooks",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/playbooks",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "playbooks"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"trigger\": \"<string>\",\n      \"enabled\": \"<boolean>\",\n      \"created_at\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"trigger\": \"<string>\",\n      \"enabled\": \"<boolean>\",\n      \"created_at\": \"<dateTime>\"\n    }\n  ],\n  \"total\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T03:05:37.000Z",
+              "updatedAt": "2026-07-28T03:05:37.000Z",
+              "uid": "35240-96c2786a-0107-44af-b9b8-563515c8fad0"
+            },
+            {
+              "id": "685d36f4-f37c-4ced-8a4c-0f555fcb691c",
+              "name": "Authentication required or token expired",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/playbooks",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "playbooks"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T03:05:37.000Z",
+              "updatedAt": "2026-07-28T03:05:37.000Z",
+              "uid": "35240-685d36f4-f37c-4ced-8a4c-0f555fcb691c"
+            }
+          ],
+          "createdAt": "2026-07-28T03:05:37.000Z",
+          "updatedAt": "2026-07-28T03:05:37.000Z",
+          "uid": "35240-7ef656b1-e729-4c42-9722-097bb6d08d23"
+        },
+        {
+          "name": "Create Playbook",
+          "id": "7c1a20f1-0e96-4d53-9cc6-24e5201dd586",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"trigger\": \"<string>\",\n  \"actions\": [],\n  \"description\": \"<string>\",\n  \"enabled\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/playbooks",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "playbooks"
+              ]
+            },
+            "description": "Create a new ATH Playbook response action."
+          },
+          "response": [
+            {
+              "id": "72f0711f-a3b5-4fcb-8fd1-5557f272bf3a",
+              "name": "Playbook created successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"trigger\": \"<string>\",\n  \"actions\": [],\n  \"description\": \"<string>\",\n  \"enabled\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/playbooks",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "playbooks"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"trigger\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"created_at\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T03:05:37.000Z",
+              "updatedAt": "2026-07-28T03:05:37.000Z",
+              "uid": "35240-72f0711f-a3b5-4fcb-8fd1-5557f272bf3a"
+            },
+            {
+              "id": "15c6822f-d415-4e16-8beb-254aaa7d35c3",
+              "name": "Authentication required or token expired",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"trigger\": \"<string>\",\n  \"actions\": [],\n  \"description\": \"<string>\",\n  \"enabled\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/playbooks",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "playbooks"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T03:05:37.000Z",
+              "updatedAt": "2026-07-28T03:05:37.000Z",
+              "uid": "35240-15c6822f-d415-4e16-8beb-254aaa7d35c3"
+            }
+          ],
+          "createdAt": "2026-07-28T03:05:37.000Z",
+          "updatedAt": "2026-07-28T03:05:37.000Z",
+          "uid": "35240-7c1a20f1-0e96-4d53-9cc6-24e5201dd586"
+        }
+      ],
+      "id": "44cf9f4e-da0a-43ce-a7e9-0d280b500870",
+      "createdAt": "2026-07-28T03:05:37.000Z",
+      "updatedAt": "2026-07-28T03:05:37.000Z",
+      "uid": "35240-44cf9f4e-da0a-43ce-a7e9-0d280b500870"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "platformHostname",
+      "value": "your-platform.stellarcyber.ai"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{platformHostname}}/connect/api/v1"
+    }
+  ]
+}

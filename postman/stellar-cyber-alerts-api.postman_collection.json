@@ -1,0 +1,458 @@
+{
+  "info": {
+    "_postman_id": "edb703bc-004d-4095-839d-136c8db15857",
+    "name": "Stellar Cyber Open XDR Alerts API",
+    "description": "The Stellar Cyber REST API provides programmatic access to the Open XDR platform, enabling automation of security operations including case management, tenant administration, connector management, alert handling, query operations, user management, watchlists, sensors, and security event management.\n\nContact Support:\n Name: Stellar Cyber Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:05:23.000Z",
+    "updatedAt": "2026-07-28T03:05:23.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-edb703bc-004d-4095-839d-136c8db15857"
+  },
+  "item": [
+    {
+      "name": "alerts",
+      "item": [
+        {
+          "name": "{alertId}",
+          "item": [
+            {
+              "name": "Update Alert",
+              "id": "8dbc3d1f-5ebe-4dbb-b86e-95e46bbe1e60",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"comment\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/alerts/:alertId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "alerts",
+                    ":alertId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "d8aca553-0056-47fe-a5f8-03087175d7f7",
+                      "key": "alertId",
+                      "value": "<string>",
+                      "description": "(Required) Unique identifier for the alert"
+                    }
+                  ]
+                },
+                "description": "Update alert tags, status, and comments."
+              },
+              "response": [
+                {
+                  "id": "9926b40d-ef30-42ed-8d10-69b26cf5c8f0",
+                  "name": "Alert updated successfully",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"status\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"comment\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/alerts/:alertId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "alerts",
+                        ":alertId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "alertId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"severity\": \"low\",\n  \"status\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"tenant_id\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"source\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:05:24.000Z",
+                  "updatedAt": "2026-07-28T03:05:24.000Z",
+                  "uid": "35240-9926b40d-ef30-42ed-8d10-69b26cf5c8f0"
+                },
+                {
+                  "id": "6455520a-9b55-40cf-b721-667430999cd4",
+                  "name": "Authentication required or token expired",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"status\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"comment\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/alerts/:alertId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "alerts",
+                        ":alertId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "alertId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T03:05:24.000Z",
+                  "updatedAt": "2026-07-28T03:05:24.000Z",
+                  "uid": "35240-6455520a-9b55-40cf-b721-667430999cd4"
+                },
+                {
+                  "id": "eed55e97-9cb8-46e0-8b5e-9912e0c3bf18",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"status\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"comment\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/alerts/:alertId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "alerts",
+                        ":alertId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "alertId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T03:05:24.000Z",
+                  "updatedAt": "2026-07-28T03:05:24.000Z",
+                  "uid": "35240-eed55e97-9cb8-46e0-8b5e-9912e0c3bf18"
+                }
+              ],
+              "createdAt": "2026-07-28T03:05:24.000Z",
+              "updatedAt": "2026-07-28T03:05:24.000Z",
+              "uid": "35240-8dbc3d1f-5ebe-4dbb-b86e-95e46bbe1e60"
+            }
+          ],
+          "id": "73acc233-9fbd-49c7-a10c-b2a87850dea3",
+          "createdAt": "2026-07-28T03:05:24.000Z",
+          "updatedAt": "2026-07-28T03:05:24.000Z",
+          "uid": "35240-73acc233-9fbd-49c7-a10c-b2a87850dea3"
+        },
+        {
+          "name": "List Alerts",
+          "id": "56c34113-186d-476f-b359-6dfb8574e759",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/alerts?limit=50&offset=0&status=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "alerts"
+              ],
+              "query": [
+                {
+                  "description": "Maximum number of alerts to return",
+                  "key": "limit",
+                  "value": "50"
+                },
+                {
+                  "description": "Pagination offset",
+                  "key": "offset",
+                  "value": "0"
+                },
+                {
+                  "description": "Filter by alert status",
+                  "key": "status",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Retrieve security alerts from the platform."
+          },
+          "response": [
+            {
+              "id": "68308dee-fc66-49a4-979b-19bf775ca7a5",
+              "name": "List of alerts",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/alerts?limit=50&offset=0&status=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "alerts"
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of alerts to return",
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "description": "Pagination offset",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Filter by alert status",
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"severity\": \"low\",\n      \"status\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"tenant_id\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"source\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"severity\": \"informational\",\n      \"status\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"tenant_id\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"source\": \"<string>\"\n    }\n  ],\n  \"total\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T03:05:24.000Z",
+              "updatedAt": "2026-07-28T03:05:24.000Z",
+              "uid": "35240-68308dee-fc66-49a4-979b-19bf775ca7a5"
+            },
+            {
+              "id": "7df4fd69-02cc-4d5f-9aa8-25b2c0e965e9",
+              "name": "Authentication required or token expired",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/alerts?limit=50&offset=0&status=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "alerts"
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of alerts to return",
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "description": "Pagination offset",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Filter by alert status",
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T03:05:24.000Z",
+              "updatedAt": "2026-07-28T03:05:24.000Z",
+              "uid": "35240-7df4fd69-02cc-4d5f-9aa8-25b2c0e965e9"
+            }
+          ],
+          "createdAt": "2026-07-28T03:05:24.000Z",
+          "updatedAt": "2026-07-28T03:05:24.000Z",
+          "uid": "35240-56c34113-186d-476f-b359-6dfb8574e759"
+        }
+      ],
+      "id": "8e7ab9fd-efdd-4970-be75-983d6bef0c25",
+      "createdAt": "2026-07-28T03:05:24.000Z",
+      "updatedAt": "2026-07-28T03:05:24.000Z",
+      "uid": "35240-8e7ab9fd-efdd-4970-be75-983d6bef0c25"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "platformHostname",
+      "value": "your-platform.stellarcyber.ai"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{platformHostname}}/connect/api/v1"
+    }
+  ]
+}

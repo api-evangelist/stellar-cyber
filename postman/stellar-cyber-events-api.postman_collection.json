@@ -1,0 +1,256 @@
+{
+  "info": {
+    "_postman_id": "214a3e5d-f38b-4354-8d5c-23ec3f7f4808",
+    "name": "Stellar Cyber Open XDR Alerts Events API",
+    "description": "The Stellar Cyber REST API provides programmatic access to the Open XDR platform, enabling automation of security operations including case management, tenant administration, connector management, alert handling, query operations, user management, watchlists, sensors, and security event management.\n\nContact Support:\n Name: Stellar Cyber Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:05:35.000Z",
+    "updatedAt": "2026-07-28T03:05:35.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-214a3e5d-f38b-4354-8d5c-23ec3f7f4808"
+  },
+  "item": [
+    {
+      "name": "events",
+      "item": [
+        {
+          "name": "Ingest Events",
+          "id": "45c1ebf1-326e-4fc1-9cc0-70370ffe6f63",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"events\": []\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/events",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "events"
+              ]
+            },
+            "description": "Add security event documents to the platform's security event index. Supports both single and bulk event ingestion."
+          },
+          "response": [
+            {
+              "id": "f353f56d-8fa6-492c-b784-9ed908f8bd5e",
+              "name": "Events ingested successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"events\": []\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/events",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "events"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"ingested\": \"<integer>\",\n  \"failed\": \"<integer>\",\n  \"errors\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "createdAt": "2026-07-28T03:05:35.000Z",
+              "updatedAt": "2026-07-28T03:05:35.000Z",
+              "uid": "35240-f353f56d-8fa6-492c-b784-9ed908f8bd5e"
+            },
+            {
+              "id": "1f12ea2d-deb6-4d70-a178-69294f5a3fb8",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"events\": []\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/events",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "events"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T03:05:35.000Z",
+              "updatedAt": "2026-07-28T03:05:35.000Z",
+              "uid": "35240-1f12ea2d-deb6-4d70-a178-69294f5a3fb8"
+            },
+            {
+              "id": "398afd47-576d-4784-8228-42f1fdd8c74f",
+              "name": "Authentication required or token expired",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"events\": []\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/events",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "events"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T03:05:35.000Z",
+              "updatedAt": "2026-07-28T03:05:35.000Z",
+              "uid": "35240-398afd47-576d-4784-8228-42f1fdd8c74f"
+            }
+          ],
+          "createdAt": "2026-07-28T03:05:35.000Z",
+          "updatedAt": "2026-07-28T03:05:35.000Z",
+          "uid": "35240-45c1ebf1-326e-4fc1-9cc0-70370ffe6f63"
+        }
+      ],
+      "id": "bb8d54e9-78cd-47ea-ac9c-8cba37347db4",
+      "createdAt": "2026-07-28T03:05:35.000Z",
+      "updatedAt": "2026-07-28T03:05:35.000Z",
+      "uid": "35240-bb8d54e9-78cd-47ea-ac9c-8cba37347db4"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "platformHostname",
+      "value": "your-platform.stellarcyber.ai"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{platformHostname}}/connect/api/v1"
+    }
+  ]
+}

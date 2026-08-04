@@ -1,0 +1,526 @@
+{
+  "info": {
+    "_postman_id": "b257ffc4-65f7-4c59-b66e-7d3ca96feed0",
+    "name": "Stellar Cyber Open XDR Alerts Sensors API",
+    "description": "The Stellar Cyber REST API provides programmatic access to the Open XDR platform, enabling automation of security operations including case management, tenant administration, connector management, alert handling, query operations, user management, watchlists, sensors, and security event management.\n\nContact Support:\n Name: Stellar Cyber Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:05:40.000Z",
+    "updatedAt": "2026-07-28T03:05:40.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b257ffc4-65f7-4c59-b66e-7d3ca96feed0"
+  },
+  "item": [
+    {
+      "name": "sensors",
+      "item": [
+        {
+          "name": "{sensorId}",
+          "item": [
+            {
+              "name": "Get Sensor",
+              "id": "2fc6506b-9af5-4441-8e2a-6dad55e99fe6",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/sensors/:sensorId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sensors",
+                    ":sensorId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "f759ba06-98f8-4041-8ab9-18418c51e62b",
+                      "key": "sensorId",
+                      "value": "<string>",
+                      "description": "(Required) Unique identifier for the sensor"
+                    }
+                  ]
+                },
+                "description": "Retrieve information about a specific sensor."
+              },
+              "response": [
+                {
+                  "id": "f8cdc768-7b28-4add-80da-6d265ab6d381",
+                  "name": "Sensor details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sensors/:sensorId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sensors",
+                        ":sensorId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "sensorId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"status\": \"online\",\n  \"ip_address\": \"<string>\",\n  \"version\": \"<string>\",\n  \"last_seen\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T03:05:40.000Z",
+                  "updatedAt": "2026-07-28T03:05:40.000Z",
+                  "uid": "35240-f8cdc768-7b28-4add-80da-6d265ab6d381"
+                },
+                {
+                  "id": "81b0aa21-adea-44d3-8d7f-728c1c9add34",
+                  "name": "Authentication required or token expired",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sensors/:sensorId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sensors",
+                        ":sensorId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "sensorId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T03:05:40.000Z",
+                  "updatedAt": "2026-07-28T03:05:40.000Z",
+                  "uid": "35240-81b0aa21-adea-44d3-8d7f-728c1c9add34"
+                },
+                {
+                  "id": "eb21d9fe-ffd4-42b9-9a79-3fe16d0a628a",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sensors/:sensorId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sensors",
+                        ":sensorId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "sensorId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T03:05:40.000Z",
+                  "updatedAt": "2026-07-28T03:05:40.000Z",
+                  "uid": "35240-eb21d9fe-ffd4-42b9-9a79-3fe16d0a628a"
+                }
+              ],
+              "createdAt": "2026-07-28T03:05:40.000Z",
+              "updatedAt": "2026-07-28T03:05:40.000Z",
+              "uid": "35240-2fc6506b-9af5-4441-8e2a-6dad55e99fe6"
+            },
+            {
+              "name": "Delete Sensor",
+              "id": "5d0b4113-75da-4ed4-b05f-f4a2a584757b",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/sensors/:sensorId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sensors",
+                    ":sensorId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "f9dc0245-4a69-43ea-a146-dad41e747c16",
+                      "key": "sensorId",
+                      "value": "<string>",
+                      "description": "(Required) Unique identifier for the sensor"
+                    }
+                  ]
+                },
+                "description": "Delete a sensor from the platform."
+              },
+              "response": [
+                {
+                  "id": "5f7b8c77-aeca-4e76-858f-10e45cda2062",
+                  "name": "Sensor deleted successfully",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sensors/:sensorId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sensors",
+                        ":sensorId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "sensorId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:05:40.000Z",
+                  "updatedAt": "2026-07-28T03:05:40.000Z",
+                  "uid": "35240-5f7b8c77-aeca-4e76-858f-10e45cda2062"
+                },
+                {
+                  "id": "5c2b8d5d-9a32-48fb-aaf8-326fae1b7826",
+                  "name": "Authentication required or token expired",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sensors/:sensorId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sensors",
+                        ":sensorId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "sensorId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T03:05:40.000Z",
+                  "updatedAt": "2026-07-28T03:05:40.000Z",
+                  "uid": "35240-5c2b8d5d-9a32-48fb-aaf8-326fae1b7826"
+                },
+                {
+                  "id": "1ef01297-b9e1-42b6-bf32-043571ffe25e",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sensors/:sensorId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sensors",
+                        ":sensorId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "sensorId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T03:05:40.000Z",
+                  "updatedAt": "2026-07-28T03:05:40.000Z",
+                  "uid": "35240-1ef01297-b9e1-42b6-bf32-043571ffe25e"
+                }
+              ],
+              "createdAt": "2026-07-28T03:05:40.000Z",
+              "updatedAt": "2026-07-28T03:05:40.000Z",
+              "uid": "35240-5d0b4113-75da-4ed4-b05f-f4a2a584757b"
+            }
+          ],
+          "id": "da9f09e0-6772-410b-8315-349e8b5f8a8d",
+          "createdAt": "2026-07-28T03:05:40.000Z",
+          "updatedAt": "2026-07-28T03:05:40.000Z",
+          "uid": "35240-da9f09e0-6772-410b-8315-349e8b5f8a8d"
+        },
+        {
+          "name": "List Sensors",
+          "id": "c5e228a5-63ab-4921-9dba-bd9861ba5d43",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/sensors",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "sensors"
+              ]
+            },
+            "description": "Retrieve all sensors registered with the platform."
+          },
+          "response": [
+            {
+              "id": "10c38ad1-a59c-4c10-8bae-8300e735f931",
+              "name": "List of sensors",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/sensors",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sensors"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"status\": \"online\",\n      \"ip_address\": \"<string>\",\n      \"version\": \"<string>\",\n      \"last_seen\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"status\": \"offline\",\n      \"ip_address\": \"<string>\",\n      \"version\": \"<string>\",\n      \"last_seen\": \"<dateTime>\"\n    }\n  ],\n  \"total\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T03:05:40.000Z",
+              "updatedAt": "2026-07-28T03:05:40.000Z",
+              "uid": "35240-10c38ad1-a59c-4c10-8bae-8300e735f931"
+            },
+            {
+              "id": "4d632a36-b8d4-4c16-a7be-c4e982dec06d",
+              "name": "Authentication required or token expired",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/sensors",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sensors"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T03:05:40.000Z",
+              "updatedAt": "2026-07-28T03:05:40.000Z",
+              "uid": "35240-4d632a36-b8d4-4c16-a7be-c4e982dec06d"
+            }
+          ],
+          "createdAt": "2026-07-28T03:05:40.000Z",
+          "updatedAt": "2026-07-28T03:05:40.000Z",
+          "uid": "35240-c5e228a5-63ab-4921-9dba-bd9861ba5d43"
+        }
+      ],
+      "id": "cc3029d0-d98c-47a8-bb0c-24259a33a0df",
+      "createdAt": "2026-07-28T03:05:40.000Z",
+      "updatedAt": "2026-07-28T03:05:40.000Z",
+      "uid": "35240-cc3029d0-d98c-47a8-bb0c-24259a33a0df"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "platformHostname",
+      "value": "your-platform.stellarcyber.ai"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{platformHostname}}/connect/api/v1"
+    }
+  ]
+}

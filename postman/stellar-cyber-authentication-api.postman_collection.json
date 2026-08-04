@@ -1,0 +1,168 @@
+{
+  "info": {
+    "_postman_id": "405237c6-bcb9-427a-ab08-c1477954d0e4",
+    "name": "Stellar Cyber Open XDR Alerts Authentication API",
+    "description": "The Stellar Cyber REST API provides programmatic access to the Open XDR platform, enabling automation of security operations including case management, tenant administration, connector management, alert handling, query operations, user management, watchlists, sensors, and security event management.\n\nContact Support:\n Name: Stellar Cyber Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:05:24.000Z",
+    "updatedAt": "2026-07-28T03:05:24.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-405237c6-bcb9-427a-ab08-c1477954d0e4"
+  },
+  "item": [
+    {
+      "name": "access_token",
+      "item": [
+        {
+          "name": "Get Access Token",
+          "id": "c99de097-3bde-4b75-8671-c1b8a4943eaa",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/access_token",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "access_token"
+              ]
+            },
+            "description": "Generate a JWT access token using an API key. The JWT expires ten minutes after generation. Use the returned token as a Bearer token in subsequent API calls."
+          },
+          "response": [
+            {
+              "id": "94de0516-c529-4395-9517-751ec7eeabc4",
+              "name": "JWT access token generated successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/access_token",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "access_token"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"access_token\": \"<string>\",\n  \"token_type\": \"<string>\",\n  \"expires_in\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T03:05:25.000Z",
+              "updatedAt": "2026-07-28T03:05:25.000Z",
+              "uid": "35240-94de0516-c529-4395-9517-751ec7eeabc4"
+            },
+            {
+              "id": "7f3f7c09-eb69-4f42-a958-7d31bbb3e184",
+              "name": "Authentication required or token expired",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/access_token",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "access_token"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"code\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T03:05:25.000Z",
+              "updatedAt": "2026-07-28T03:05:25.000Z",
+              "uid": "35240-7f3f7c09-eb69-4f42-a958-7d31bbb3e184"
+            }
+          ],
+          "createdAt": "2026-07-28T03:05:25.000Z",
+          "updatedAt": "2026-07-28T03:05:25.000Z",
+          "uid": "35240-c99de097-3bde-4b75-8671-c1b8a4943eaa"
+        }
+      ],
+      "id": "e2a5b23b-61b9-4b5b-8e39-186d83dea7b5",
+      "createdAt": "2026-07-28T03:05:25.000Z",
+      "updatedAt": "2026-07-28T03:05:25.000Z",
+      "uid": "35240-e2a5b23b-61b9-4b5b-8e39-186d83dea7b5"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "platformHostname",
+      "value": "your-platform.stellarcyber.ai"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{platformHostname}}/connect/api/v1"
+    }
+  ]
+}
