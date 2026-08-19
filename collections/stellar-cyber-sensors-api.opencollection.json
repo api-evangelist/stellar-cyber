@@ -1,0 +1,73 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Stellar Cyber Open XDR Alerts Sensors API",
+    "version": "6.3"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Sensors",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Sensors",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{platformHostname}/connect/api/v1/sensors"
+          },
+          "docs": "Retrieve all sensors registered with the platform."
+        },
+        {
+          "info": {
+            "name": "Get Sensor",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{platformHostname}/connect/api/v1/sensors/:sensorId",
+            "params": [
+              {
+                "name": "sensorId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the sensor"
+              }
+            ]
+          },
+          "docs": "Retrieve information about a specific sensor."
+        },
+        {
+          "info": {
+            "name": "Delete Sensor",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{platformHostname}/connect/api/v1/sensors/:sensorId",
+            "params": [
+              {
+                "name": "sensorId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the sensor"
+              }
+            ]
+          },
+          "docs": "Delete a sensor from the platform."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

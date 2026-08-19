@@ -1,0 +1,50 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Stellar Cyber Open XDR Alerts Playbooks API",
+    "version": "6.3"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Playbooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Playbooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{platformHostname}/connect/api/v1/playbooks"
+          },
+          "docs": "Retrieve all ATH Playbook response action definitions."
+        },
+        {
+          "info": {
+            "name": "Create Playbook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{platformHostname}/connect/api/v1/playbooks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new ATH Playbook response action."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

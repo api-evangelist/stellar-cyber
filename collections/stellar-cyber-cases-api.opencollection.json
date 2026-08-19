@@ -1,0 +1,131 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Stellar Cyber Open XDR Alerts Cases API",
+    "version": "6.3"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Cases",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Cases",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{platformHostname}/connect/api/v1/cases",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of cases to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of cases to skip for pagination"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter cases by status"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of security cases from the platform."
+        },
+        {
+          "info": {
+            "name": "Create Case",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{platformHostname}/connect/api/v1/cases",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new security case in the platform."
+        },
+        {
+          "info": {
+            "name": "Get Case",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{platformHostname}/connect/api/v1/cases/:caseId",
+            "params": [
+              {
+                "name": "caseId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the case"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific security case."
+        },
+        {
+          "info": {
+            "name": "Update Case",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{platformHostname}/connect/api/v1/cases/:caseId",
+            "params": [
+              {
+                "name": "caseId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the case"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the status, priority, or other attributes of a security case."
+        },
+        {
+          "info": {
+            "name": "Close Case",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{platformHostname}/connect/api/v1/cases/:caseId",
+            "params": [
+              {
+                "name": "caseId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the case"
+              }
+            ]
+          },
+          "docs": "Close a security case in the platform."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

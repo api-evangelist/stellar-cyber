@@ -1,0 +1,363 @@
+{
+  "item": [
+    {
+      "id": "54bcad67-67c7-4503-8b01-816b66502f1b",
+      "name": "Playbooks",
+      "description": {
+        "content": "ATH Playbook response action management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "764f866a-2b4d-47a9-8cd2-7f97e9a993fe",
+          "name": "List Playbooks",
+          "request": {
+            "name": "List Playbooks",
+            "description": {
+              "content": "Retrieve all ATH Playbook response action definitions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "playbooks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Stellar Cyber platform hostname",
+                  "type": "any",
+                  "value": "{{platformHostname}}",
+                  "key": "platformHostname"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8e89ebfa-f0ea-4683-b464-487e7a7ed62b",
+              "name": "List of playbooks",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "playbooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Stellar Cyber platform hostname",
+                      "type": "any",
+                      "value": "{{platformHostname}}",
+                      "key": "platformHostname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"trigger\": \"string\",\n      \"enabled\": false,\n      \"created_at\": \"1983-01-21T05:59:06.541Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"trigger\": \"string\",\n      \"enabled\": false,\n      \"created_at\": \"1959-08-04T13:46:54.428Z\"\n    }\n  ],\n  \"total\": 8293\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d132a2b8-653d-4ddc-a520-1c42bf83871b",
+              "name": "Authentication required or token expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "playbooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Stellar Cyber platform hostname",
+                      "type": "any",
+                      "value": "{{platformHostname}}",
+                      "key": "platformHostname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"code\": 8602\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "235bfac7-77b0-4a72-94c4-447088bd428c",
+          "name": "Create Playbook",
+          "request": {
+            "name": "Create Playbook",
+            "description": {
+              "content": "Create a new ATH Playbook response action.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "playbooks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Stellar Cyber platform hostname",
+                  "type": "any",
+                  "value": "{{platformHostname}}",
+                  "key": "platformHostname"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"trigger\": \"<string>\",\n  \"actions\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"description\": \"<string>\",\n  \"enabled\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f5025cd9-2d6e-42dc-865b-ca643567ef76",
+              "name": "Playbook created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "playbooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Stellar Cyber platform hostname",
+                      "type": "any",
+                      "value": "{{platformHostname}}",
+                      "key": "platformHostname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"trigger\": \"<string>\",\n  \"actions\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"description\": \"<string>\",\n  \"enabled\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"trigger\": \"string\",\n  \"enabled\": true,\n  \"created_at\": \"2004-04-10T02:43:50.154Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1175ca49-7d2c-490a-b738-437c65d16bf4",
+              "name": "Authentication required or token expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "playbooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Stellar Cyber platform hostname",
+                      "type": "any",
+                      "value": "{{platformHostname}}",
+                      "key": "platformHostname"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"trigger\": \"<string>\",\n  \"actions\": [\n    \"<object>\",\n    \"<object>\"\n  ],\n  \"description\": \"<string>\",\n  \"enabled\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"message\": \"string\",\n  \"code\": 8602\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your Stellar Cyber platform hostname",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "your-platform.stellarcyber.ai",
+      "key": "platformHostname"
+    },
+    {
+      "type": "string",
+      "value": "https://{{platformHostname}}/connect/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "40caee44-dd19-40af-b4e2-26a0433c84e3",
+    "name": "Stellar Cyber Open XDR Alerts Playbooks API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Stellar Cyber REST API provides programmatic access to the Open XDR platform, enabling automation of security operations including case management, tenant administration, connector management, alert handling, query operations, user management, watchlists, sensors, and security event management.\n\nContact Support:\n Name: Stellar Cyber Support",
+      "type": "text/plain"
+    }
+  }
+}

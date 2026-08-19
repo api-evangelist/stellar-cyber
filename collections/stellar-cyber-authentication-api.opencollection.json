@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Stellar Cyber Open XDR Alerts Authentication API",
+    "version": "6.3"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Access Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{platformHostname}/connect/api/v1/access_token",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Generate a JWT access token using an API key. The JWT expires ten minutes after generation. Use the returned token as a Bearer token in subsequent API calls."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

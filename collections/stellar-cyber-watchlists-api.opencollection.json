@@ -1,0 +1,69 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Stellar Cyber Open XDR Alerts Watchlists API",
+    "version": "6.3"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Watchlists",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Watchlists",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{platformHostname}/connect/api/v1/watchlists"
+          },
+          "docs": "Retrieve all configured watchlists."
+        },
+        {
+          "info": {
+            "name": "Create Watchlist",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{platformHostname}/connect/api/v1/watchlists",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new watchlist for tracking threat indicators."
+        },
+        {
+          "info": {
+            "name": "Delete Watchlist",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{platformHostname}/connect/api/v1/watchlists/:watchlistId",
+            "params": [
+              {
+                "name": "watchlistId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the watchlist"
+              }
+            ]
+          },
+          "docs": "Delete a watchlist."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

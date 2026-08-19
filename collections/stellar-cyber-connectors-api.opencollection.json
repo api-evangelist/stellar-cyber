@@ -1,0 +1,111 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Stellar Cyber Open XDR Alerts Connectors API",
+    "version": "6.3"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Connectors",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Connectors",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{platformHostname}/connect/api/v1/connectors"
+          },
+          "docs": "Retrieve all configured data connectors."
+        },
+        {
+          "info": {
+            "name": "Create Connector",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{platformHostname}/connect/api/v1/connectors",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new data connector for ingesting security telemetry."
+        },
+        {
+          "info": {
+            "name": "Get Connector",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{platformHostname}/connect/api/v1/connectors/:connectorId",
+            "params": [
+              {
+                "name": "connectorId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the connector"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific connector."
+        },
+        {
+          "info": {
+            "name": "Update Connector",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{platformHostname}/connect/api/v1/connectors/:connectorId",
+            "params": [
+              {
+                "name": "connectorId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the connector"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update connector configuration or checkpoint timestamp."
+        },
+        {
+          "info": {
+            "name": "Delete Connector",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{platformHostname}/connect/api/v1/connectors/:connectorId",
+            "params": [
+              {
+                "name": "connectorId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the connector"
+              }
+            ]
+          },
+          "docs": "Delete a data connector."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
