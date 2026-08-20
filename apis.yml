@@ -29,6 +29,13 @@ tags:
   - XDR
   - SIEM
   - SOAR
+  - Artificial Intelligence
+tags_raw:
+  - Cybersecurity
+  - Security
+  - XDR
+  - SIEM
+  - SOAR
   - AI
 created: '2025-02-06'
 modified: '2026-05-19'
@@ -97,6 +104,8 @@ apis:
   humanURL: https://docs.stellarcyber.ai/
   baseURL: https://{platform-hostname}/connect/api/v1
   tags:
+  - Event
+  tags_raw:
   - Events
   properties:
   - type: OpenAPI
@@ -125,6 +134,8 @@ apis:
   humanURL: https://docs.stellarcyber.ai/
   baseURL: https://{platform-hostname}/connect/api/v1
   tags:
+  - Query
+  tags_raw:
   - Queries
   properties:
   - type: OpenAPI
@@ -181,6 +192,8 @@ apis:
   humanURL: https://docs.stellarcyber.ai/
   baseURL: https://{platform-hostname}/connect/api/v1
   tags:
+  - Watchlist
+  tags_raw:
   - Watchlists
   properties:
   - type: OpenAPI
