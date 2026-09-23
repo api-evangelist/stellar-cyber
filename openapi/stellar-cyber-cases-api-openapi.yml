@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Stellar Cyber Open XDR Alerts Cases API
+  title: Stellar Cyber Open XDR Cases API
   description: The Stellar Cyber REST API provides programmatic access to the Open XDR platform, enabling automation of security operations including case management, tenant administration, connector management, alert handling, query operations, user management, watchlists, sensors, and security event management.
   version: '6.3'
   contact:
@@ -145,6 +145,68 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        code:
+          type: integer
+    UpdateCaseRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+          enum:
+          - open
+          - closed
+          - investigating
+        priority:
+          type: string
+          enum:
+          - critical
+          - high
+          - medium
+          - low
+        assignee:
+          type: string
+    CasesListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Case'
+        total:
+          type: integer
+        limit:
+          type: integer
+        offset:
+          type: integer
+    CreateCaseRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        priority:
+          type: string
+          enum:
+          - critical
+          - high
+          - medium
+          - low
+        assignee:
+          type: string
     Case:
       type: object
       properties:
@@ -179,68 +241,6 @@ components:
           format: date-time
         alert_count:
           type: integer
-    CreateCaseRequest:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        priority:
-          type: string
-          enum:
-          - critical
-          - high
-          - medium
-          - low
-        assignee:
-          type: string
-    CasesListResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Case'
-        total:
-          type: integer
-        limit:
-          type: integer
-        offset:
-          type: integer
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        message:
-          type: string
-        code:
-          type: integer
-    UpdateCaseRequest:
-      type: object
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        status:
-          type: string
-          enum:
-          - open
-          - closed
-          - investigating
-        priority:
-          type: string
-          enum:
-          - critical
-          - high
-          - medium
-          - low
-        assignee:
-          type: string
   parameters:
     CaseId:
       name: caseId
@@ -250,6 +250,12 @@ components:
       schema:
         type: string
   responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
     BadRequest:
       description: Invalid request parameters
       content:
@@ -258,12 +264,6 @@ components:
             $ref: '#/components/schemas/Error'
     Unauthorized:
       description: Authentication required or token expired
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Resource not found
       content:
         application/json:
           schema:

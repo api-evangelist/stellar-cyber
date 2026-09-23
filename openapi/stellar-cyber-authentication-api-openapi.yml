@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Stellar Cyber Open XDR Alerts Authentication API
+  title: Stellar Cyber Open XDR Authentication API
   description: The Stellar Cyber REST API provides programmatic access to the Open XDR platform, enabling automation of security operations including case management, tenant administration, connector management, alert handling, query operations, user management, watchlists, sensors, and security event management.
   version: '6.3'
   contact:

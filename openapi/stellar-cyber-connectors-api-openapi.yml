@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Stellar Cyber Open XDR Alerts Connectors API
+  title: Stellar Cyber Open XDR Connectors API
   description: The Stellar Cyber REST API provides programmatic access to the Open XDR platform, enabling automation of security operations including case management, tenant administration, connector management, alert handling, query operations, user management, watchlists, sensors, and security event management.
   version: '6.3'
   contact:
@@ -120,15 +120,17 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  parameters:
+    ConnectorId:
+      name: connectorId
+      in: path
+      required: true
+      description: Unique identifier for the connector
+      schema:
+        type: string
   responses:
     BadRequest:
       description: Invalid request parameters
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required or token expired
       content:
         application/json:
           schema:
@@ -139,19 +141,13 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required or token expired
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    CreateConnectorRequest:
-      type: object
-      required:
-      - name
-      - type
-      properties:
-        name:
-          type: string
-        type:
-          type: string
-        config:
-          type: object
     Connector:
       type: object
       properties:
@@ -173,15 +169,27 @@ components:
         created_at:
           type: string
           format: date-time
-    ConnectorsListResponse:
+    Error:
       type: object
       properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Connector'
-        total:
+        error:
+          type: string
+        message:
+          type: string
+        code:
           type: integer
+    CreateConnectorRequest:
+      type: object
+      required:
+      - name
+      - type
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+        config:
+          type: object
     UpdateConnectorRequest:
       type: object
       properties:
@@ -192,23 +200,15 @@ components:
         checkpoint:
           type: string
           format: date-time
-    Error:
+    ConnectorsListResponse:
       type: object
       properties:
-        error:
-          type: string
-        message:
-          type: string
-        code:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Connector'
+        total:
           type: integer
-  parameters:
-    ConnectorId:
-      name: connectorId
-      in: path
-      required: true
-      description: Unique identifier for the connector
-      schema:
-        type: string
   securitySchemes:
     bearerAuth:
       type: http

@@ -1,0 +1,29 @@
+# Front Door AI Index — stellar-cyber — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: stellar-cyber
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: stellarcyber.ai
+  final_host: stellarcyber.ai
+  ownership: own
+  owner: stellar-cyber
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 65
+  host_score: 65
+  density: 35.1
+  words: 1852
+  tiers:
+    agentic: 4
+    core: 61
+    model: 0
+  ambiguous: 11
+  top_terms:
+    AI: 60
+    automation: 6
+    intelligence: 5
+    agentic: 4
+    LLMs: 1
