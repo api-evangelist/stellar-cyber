@@ -84,6 +84,34 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    Alert:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        severity:
+          type: string
+          enum:
+          - critical
+          - high
+          - medium
+          - low
+          - informational
+        status:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+        tenant_id:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        source:
+          type: string
     UpdateAlertRequest:
       type: object
       properties:
@@ -113,34 +141,19 @@ components:
           type: string
         code:
           type: integer
-    Alert:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        severity:
-          type: string
-          enum:
-          - critical
-          - high
-          - medium
-          - low
-          - informational
-        status:
-          type: string
-        tags:
-          type: array
-          items:
-            type: string
-        tenant_id:
-          type: string
-        created_at:
-          type: string
-          format: date-time
-        source:
-          type: string
+  responses:
+    Unauthorized:
+      description: Authentication required or token expired
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   parameters:
     AlertId:
       name: alertId
@@ -149,19 +162,6 @@ components:
       description: Unique identifier for the alert
       schema:
         type: string
-  responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required or token expired
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     bearerAuth:
       type: http

@@ -76,15 +76,29 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  parameters:
-    ReportId:
-      name: reportId
-      in: path
-      required: true
-      description: Unique identifier for the report
-      schema:
-        type: string
+  responses:
+    Unauthorized:
+      description: Authentication required or token expired
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        code:
+          type: integer
     ReportsListResponse:
       type: object
       properties:
@@ -106,15 +120,6 @@ components:
           type: string
         parameters:
           type: object
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        message:
-          type: string
-        code:
-          type: integer
     Report:
       type: object
       properties:
@@ -135,19 +140,14 @@ components:
           format: date-time
         url:
           type: string
-  responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required or token expired
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+  parameters:
+    ReportId:
+      name: reportId
+      in: path
+      required: true
+      description: Unique identifier for the report
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http

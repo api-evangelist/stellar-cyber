@@ -97,41 +97,14 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  parameters:
-    QueryId:
-      name: queryId
-      in: path
-      required: true
-      description: Unique identifier for the query
-      schema:
-        type: string
+  responses:
+    Unauthorized:
+      description: Authentication required or token expired
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    CreateQueryRequest:
-      type: object
-      required:
-      - name
-      - query
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        query:
-          type: string
-    Query:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        query:
-          type: string
-        created_at:
-          type: string
-          format: date-time
     QueriesListResponse:
       type: object
       properties:
@@ -159,13 +132,40 @@ components:
           type: string
         query:
           type: string
-  responses:
-    Unauthorized:
-      description: Authentication required or token expired
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    CreateQueryRequest:
+      type: object
+      required:
+      - name
+      - query
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        query:
+          type: string
+    Query:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        query:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+  parameters:
+    QueryId:
+      name: queryId
+      in: path
+      required: true
+      description: Unique identifier for the query
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http

@@ -77,22 +77,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    Watchlist:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        entries:
-          type: array
-          items:
-            type: string
-        created_at:
-          type: string
-          format: date-time
     WatchlistsListResponse:
       type: object
       properties:
@@ -124,15 +108,31 @@ components:
           type: string
         code:
           type: integer
+    Watchlist:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        entries:
+          type: array
+          items:
+            type: string
+        created_at:
+          type: string
+          format: date-time
   responses:
-    NotFound:
-      description: Resource not found
+    Unauthorized:
+      description: Authentication required or token expired
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required or token expired
+    NotFound:
+      description: Resource not found
       content:
         application/json:
           schema:

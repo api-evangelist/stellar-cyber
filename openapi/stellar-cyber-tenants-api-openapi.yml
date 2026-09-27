@@ -119,6 +119,24 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    CreateTenantRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        code:
+          type: integer
     TenantsListResponse:
       type: object
       properties:
@@ -130,15 +148,6 @@ components:
           type: integer
     UpdateTenantRequest:
       type: object
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-    CreateTenantRequest:
-      type: object
-      required:
-      - name
       properties:
         name:
           type: string
@@ -156,15 +165,19 @@ components:
         created_at:
           type: string
           format: date-time
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        message:
-          type: string
-        code:
-          type: integer
+  responses:
+    Unauthorized:
+      description: Authentication required or token expired
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   parameters:
     TenantId:
       name: tenantId
@@ -173,19 +186,6 @@ components:
       description: Unique identifier for the tenant
       schema:
         type: string
-  responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required or token expired
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     bearerAuth:
       type: http

@@ -61,6 +61,15 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
+    PlaybooksListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Playbook'
+        total:
+          type: integer
     CreatePlaybookRequest:
       type: object
       required:
@@ -80,24 +89,6 @@ components:
             type: object
         enabled:
           type: boolean
-    PlaybooksListResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Playbook'
-        total:
-          type: integer
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        message:
-          type: string
-        code:
-          type: integer
     Playbook:
       type: object
       properties:
@@ -118,6 +109,15 @@ components:
         created_at:
           type: string
           format: date-time
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        code:
+          type: integer
   responses:
     Unauthorized:
       description: Authentication required or token expired
