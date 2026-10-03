@@ -77,28 +77,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    WatchlistsListResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Watchlist'
-        total:
-          type: integer
-    CreateWatchlistRequest:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        entries:
-          type: array
-          items:
-            type: string
     Error:
       type: object
       properties:
@@ -124,19 +102,28 @@ components:
         created_at:
           type: string
           format: date-time
-  responses:
-    Unauthorized:
-      description: Authentication required or token expired
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    WatchlistsListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Watchlist'
+        total:
+          type: integer
+    CreateWatchlistRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        entries:
+          type: array
+          items:
+            type: string
   parameters:
     WatchlistId:
       name: watchlistId
@@ -145,6 +132,19 @@ components:
       description: Unique identifier for the watchlist
       schema:
         type: string
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required or token expired
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     bearerAuth:
       type: http

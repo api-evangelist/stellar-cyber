@@ -119,15 +119,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    CreateTenantRequest:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-        description:
-          type: string
     Error:
       type: object
       properties:
@@ -137,22 +128,6 @@ components:
           type: string
         code:
           type: integer
-    TenantsListResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Tenant'
-        total:
-          type: integer
-    UpdateTenantRequest:
-      type: object
-      properties:
-        name:
-          type: string
-        description:
-          type: string
     Tenant:
       type: object
       properties:
@@ -165,15 +140,40 @@ components:
         created_at:
           type: string
           format: date-time
+    UpdateTenantRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+    TenantsListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tenant'
+        total:
+          type: integer
+    CreateTenantRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        description:
+          type: string
   responses:
-    Unauthorized:
-      description: Authentication required or token expired
+    NotFound:
+      description: Resource not found
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Resource not found
+    Unauthorized:
+      description: Authentication required or token expired
       content:
         application/json:
           schema:
