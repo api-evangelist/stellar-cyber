@@ -216,6 +216,9 @@ apis:
   - type: Reference
     url: https://docs.stellarcyber.ai/6.3.x/Using/API/API-Intro.htm
 common:
+  - type: CapabilityMap
+    url: capabilities/stellar-cyber-capability-edges.yml
+    name: Stellar Cyber Business Capability Map
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/stellar-cyber/overview
   - type: AgenticAccess

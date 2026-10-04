@@ -1,0 +1,62 @@
+slug: stellar-cyber
+provider: Stellar Cyber
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 5
+edges:
+- tag: Alerts
+  spec_file: stellar-cyber-alerts-api-openapi.yml
+  capability_id: BC-620.30
+  capability_id_l1: BC-620
+  capability_name: Threat Detection & Response Management
+  confidence: 0.88
+  evidence: GET /alerts  listAlerts  List Alerts; Update Alert — platform 'provides AI-driven security
+    operations capabilities including threat detection, investigation, and response'
+  reason: Alerts here are XDR security detections triaged by a SOC, matching Threat Detection & Response
+    Management rather than any financial/operational alerting.
+- tag: Cases
+  spec_file: stellar-cyber-cases-api-openapi.yml
+  capability_id: BC-620.30
+  capability_id_l1: BC-620
+  capability_name: Threat Detection & Response Management
+  confidence: 0.82
+  evidence: GET /cases listCases; POST /cases createCase; DELETE /cases/{caseId} closeCase — 'automation
+    of security operations including case management'
+  reason: Security-operations case lifecycle (open, update, close) is SOC incident investigation and response,
+    not legal matters or customer complaints.
+- tag: Tenants
+  spec_file: stellar-cyber-tenants-api-openapi.yml
+  capability_id: BC-4230.10
+  capability_id_l1: BC-4230
+  capability_name: Tenant Provisioning & Lifecycle
+  confidence: 0.78
+  evidence: POST /tenants createTenant; DELETE /tenants/{tenantId} deleteTenant — 'tenant administration'
+  reason: Create/update/delete of tenants in a multi-tenant SaaS platform is tenant provisioning and lifecycle
+    management; no evidence of per-tenant configuration or isolation specifics.
+- tag: Playbooks
+  spec_file: stellar-cyber-playbooks-api-openapi.yml
+  capability_id: BC-620.30
+  capability_id_l1: BC-620
+  capability_name: Threat Detection & Response Management
+  confidence: 0.75
+  evidence: GET /playbooks  listPlaybooks; POST /playbooks  createPlaybook
+  reason: Playbooks on an Open XDR platform are automated security response runbooks (SOAR), aligning
+    with SOC/incident response; limited operation detail keeps confidence moderate.
+- tag: Events
+  spec_file: stellar-cyber-events-api-openapi.yml
+  capability_id: BC-620.30
+  capability_id_l1: BC-620
+  capability_name: Threat Detection & Response Management
+  confidence: 0.72
+  evidence: POST /events  ingestEvents  Ingest Events — 'security event management'
+  reason: Ingestion of security events into the XDR/SIEM data lake supports threat detection and response;
+    somewhat thin surface so moderate confidence.
