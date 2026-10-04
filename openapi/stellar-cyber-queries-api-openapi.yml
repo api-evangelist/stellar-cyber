@@ -97,25 +97,31 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  parameters:
+    QueryId:
+      name: queryId
+      in: path
+      required: true
+      description: Unique identifier for the query
+      schema:
+        type: string
+  responses:
+    Unauthorized:
+      description: Authentication required or token expired
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    QueriesListResponse:
+    UpdateQueryRequest:
       type: object
       properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Query'
-        total:
-          type: integer
-    Error:
-      type: object
-      properties:
-        error:
+        name:
           type: string
-        message:
+        description:
           type: string
-        code:
-          type: integer
+        query:
+          type: string
     CreateQueryRequest:
       type: object
       required:
@@ -128,6 +134,15 @@ components:
           type: string
         query:
           type: string
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        code:
+          type: integer
     Query:
       type: object
       properties:
@@ -142,30 +157,15 @@ components:
         created_at:
           type: string
           format: date-time
-    UpdateQueryRequest:
+    QueriesListResponse:
       type: object
       properties:
-        name:
-          type: string
-        description:
-          type: string
-        query:
-          type: string
-  responses:
-    Unauthorized:
-      description: Authentication required or token expired
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-  parameters:
-    QueryId:
-      name: queryId
-      in: path
-      required: true
-      description: Unique identifier for the query
-      schema:
-        type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Query'
+        total:
+          type: integer
   securitySchemes:
     bearerAuth:
       type: http
