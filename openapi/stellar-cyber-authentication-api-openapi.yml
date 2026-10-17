@@ -42,15 +42,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        message:
-          type: string
-        code:
-          type: integer
     AccessTokenResponse:
       type: object
       properties:
@@ -63,6 +54,15 @@ components:
         expires_in:
           type: integer
           description: Token expiry in seconds (default 600)
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        code:
+          type: integer
   responses:
     Unauthorized:
       description: Authentication required or token expired

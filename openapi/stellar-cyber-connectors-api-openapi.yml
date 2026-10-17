@@ -127,28 +127,19 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required or token expired
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     NotFound:
       description: Resource not found
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required or token expired
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    ConnectorsListResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Connector'
-        total:
-          type: integer
     Connector:
       type: object
       properties:
@@ -170,16 +161,15 @@ components:
         created_at:
           type: string
           format: date-time
-    UpdateConnectorRequest:
+    ConnectorsListResponse:
       type: object
       properties:
-        name:
-          type: string
-        config:
-          type: object
-        checkpoint:
-          type: string
-          format: date-time
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Connector'
+        total:
+          type: integer
     CreateConnectorRequest:
       type: object
       required:
@@ -201,6 +191,16 @@ components:
           type: string
         code:
           type: integer
+    UpdateConnectorRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        config:
+          type: object
+        checkpoint:
+          type: string
+          format: date-time
   parameters:
     ConnectorId:
       name: connectorId

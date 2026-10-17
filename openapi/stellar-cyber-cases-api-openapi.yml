@@ -151,14 +151,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required or token expired
+    NotFound:
+      description: Resource not found
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Resource not found
+    Unauthorized:
+      description: Authentication required or token expired
       content:
         application/json:
           schema:
@@ -180,40 +180,6 @@ components:
         message:
           type: string
         code:
-          type: integer
-    Case:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        status:
-          type: string
-          enum:
-          - open
-          - closed
-          - investigating
-        priority:
-          type: string
-          enum:
-          - critical
-          - high
-          - medium
-          - low
-        assignee:
-          type: string
-        tenant_id:
-          type: string
-        created_at:
-          type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
-        alert_count:
           type: integer
     UpdateCaseRequest:
       type: object
@@ -267,6 +233,40 @@ components:
         limit:
           type: integer
         offset:
+          type: integer
+    Case:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+          enum:
+          - open
+          - closed
+          - investigating
+        priority:
+          type: string
+          enum:
+          - critical
+          - high
+          - medium
+          - low
+        assignee:
+          type: string
+        tenant_id:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        alert_count:
           type: integer
   securitySchemes:
     bearerAuth:
